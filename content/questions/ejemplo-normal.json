@@ -1,0 +1,9 @@
+{
+  "questions": [
+    { "text": "¿Cuál es la función principal de una biblioteca pública?", "options": ["Préstamo y acceso a la información", "Venta de libros", "Edición de revistas", "Impresión de documentos"], "answer": 0, "theme": "servicios" },
+    { "text": "El depósito legal obliga a depositar: ", "options": ["Toda publicación editada en España", "Solo libros antiguos", "Solo revistas científicas", "Solo tesis doctorales"], "answer": 0, "theme": "documentacion" },
+    { "text": "La CDU es una: ", "options": ["Clasificación Decimal Universal", "Base de datos", "Lenguaje de marcado", "Norma ISO"], "answer": 0, "theme": "procesos" },
+    { "text": "¿Qué organismo gestiona el ISBN en España?", "options": ["Agencia del ISBN", "Ministerio de Cultura", "Biblioteca Nacional", "Real Academia"], "answer": 0, "theme": "bibliografia" },
+    { "text": "Una biblioteca digital se caracteriza por: ", "options": ["Acceso a recursos digitales", "Solo libros físicos", " Solo microfilm", " Solo mapas"], "answer": 0, "theme": "tecnologias" }
+  ]
+}

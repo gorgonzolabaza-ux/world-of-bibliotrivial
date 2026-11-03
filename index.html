@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World of BiblioTrivial</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; background: #0b0f1a; font-family: system-ui, sans-serif; color: #eee; }
+    #app { position: fixed; inset: 0; }
+    #hud { position: fixed; top: 12px; left: 12px; z-index: 10; background: rgba(0,0,0,0.55); padding: 10px 14px; border-radius: 10px; backdrop-filter: blur(6px); min-width: 220px; }
+    #hud h1 { margin: 0 0 6px; font-size: 16px; }
+    #hud .row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+    #dice { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 10; padding: 10px 18px; border-radius: 10px; border: none; background: #f5c518; color: #111; font-weight: 700; cursor: pointer; }
+    #dice:disabled { opacity: 0.5; cursor: not-allowed; }
+    #modal { position: fixed; inset: 0; z-index: 20; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); }
+    #modal.open { display: flex; }
+    #modal .card { background: #1a2033; padding: 20px; border-radius: 14px; max-width: 520px; width: 90%; }
+    #modal .card h2 { margin-top: 0; }
+    #modal .opts { display: grid; gap: 8px; margin: 12px 0; }
+    #modal .opts button { text-align: left; padding: 10px; border-radius: 8px; border: 1px solid #334; background: #232a40; color: #eee; cursor: pointer; }
+    #modal .opts button:hover { background: #2e3755; }
+    #menu { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg,#0b0f1a,#1a2033); }
+    #menu .panel { background: rgba(255,255,255,0.06); padding: 28px; border-radius: 16px; width: 360px; }
+    #menu label { display: block; margin: 10px 0 4px; font-size: 13px; }
+    #menu select, #menu input { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #334; background: #11162a; color: #eee; }
+    #menu button { margin-top: 16px; width: 100%; padding: 12px; border: none; border-radius: 10px; background: #f5c518; color: #111; font-weight: 700; cursor: pointer; }
+    .quesitos { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .quesito { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #555; }
+    .quesito.on { border-color: #fff; box-shadow: 0 0 6px currentColor; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="menu">
+    <div class="panel">
+      <h1>World of BiblioTrivial</h1>
+      <label>Raza</label>
+      <select id="race">
+        <option value="human">Humano</option>
+        <option value="elf">Elfo</option>
+        <option value="dwarf">Enano</option>
+        <option value="orc">Orco</option>
+      </select>
+      <label>Dificultad</label>
+      <select id="difficulty">
+        <option value="normal">Normal (C1/C2)</option>
+        <option value="hard">Difícil (A1/A2)</option>
+      </select>
+      <label>Color</label>
+      <input type="color" id="color" value="#4a90d9" />
+      <button id="startBtn">Comenzar partida</button>
+      <button id="updateBtn" style="background:#2e3755;color:#eee;margin-top:8px;">Actualizar contenido</button>
+      <div id="status" style="margin-top:10px;font-size:12px;opacity:0.8;"></div>
+      <div id="bestRuns" style="margin-top:10px;font-size:12px;opacity:0.9;"></div>
+      <div id="achList" style="margin-top:10px;font-size:12px;opacity:0.9;"></div>
+    </div>
+  </div>
+  <div id="hud" style="display:none;">
+    <h1>World of BiblioTrivial</h1>
+    <div class="row"><span>Puntos</span><span id="score">0</span></div>
+    <div class="row"><span>Tema actual</span><span id="theme">-</span></div>
+    <div class="row"><span>Aciertos tema</span><span id="themeHits">0/10</span></div>
+    <div id="quesitos" class="quesitos"></div>
+  </div>
+  <button id="dice" style="display:none;">🎲 Lanzar dado</button>
+  <div id="modal">
+    <div class="card">
+      <h2 id="qtext"></h2>
+      <div class="opts" id="qopts"></div>
+      <div id="qfeedback" style="margin-top:8px;font-weight:700;"></div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

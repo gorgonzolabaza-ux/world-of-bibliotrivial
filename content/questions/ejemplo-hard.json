@@ -1,0 +1,6 @@
+{
+  "questions": [
+    { "text": "¿En qué año se aprobó la Ley 10/2007 del Sistema Bibliotecario Español?", "options": ["2007", "2010", "2005", "2012"], "answer": 0, "theme": "legislacion" },
+    { "text": "La normalización de metadatos en bibliotecas se basa en: ", "options": ["Estándares como MARC y Dublin Core", "Solo PDF", "Solo HTML", "Solo XML genérico"], "answer": 0, "theme": "procesos" }
+  ]
+}
