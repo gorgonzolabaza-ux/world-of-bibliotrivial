@@ -126,7 +126,7 @@ async function extractPdfText(file) {
     require.resolve('pdfjs-dist/legacy/build/pdf.worker.mjs'),
   ).href;
   const data = new Uint8Array(fs.readFileSync(file));
-  const doc = await pdfjs.getDocument({ data, useSystemFonts: true }).promise;
+  const doc = await pdfjs.getDocument({ data, useSystemFonts: true, verbosity: 0 }).promise;
   let out = '';
   for (let p = 1; p <= doc.numPages; p++) {
     const page = await doc.getPage(p);
