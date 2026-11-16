@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { CATEGORIES } from './categories';
 import type { CategoryKey } from './categories';
 import {
@@ -161,7 +161,9 @@ export function createBoardView(textures: TableTextures): BoardView {
 
   /* ---------- cuñas de color (los seis sectores) ---------- */
   const sectorSpan = 360 / SECTOR_COUNT;
-  const gapDeg = 0.8;
+  // las cuñas se tocan: el hueco entre ellas era lo que dejaba ver la madera.
+  // La junta la marca una incrustación dorada, no un hueco.
+  const gapDeg = 0.05;
   const plateMaterials: THREE.MeshStandardMaterial[] = [];
   for (let s = 0; s < SECTOR_COUNT; s++) {
     const category = CATEGORIES[s];
@@ -180,6 +182,31 @@ export function createBoardView(textures: TableTextures): BoardView {
     plate.receiveShadow = true;
     group.add(plate);
     plateMaterials.push(plate.material as THREE.MeshStandardMaterial);
+  }
+
+  /* ---------- junta dorada entre cuñas ---------- */
+  // Una varilla fina en cada uno de los seis radios, a ras de la superficie.
+  // Queda por debajo del centro y de las casillas, así que solo se ve el tramo
+  // que separa dos paneles.
+  const seamMaterial = new THREE.MeshStandardMaterial({
+    // sin mapa de entorno un metal puro se ve negro: se baja el metalness y se
+    // sube el color para que lea como latón pulido bajo la luz de la escena
+    color: 0xe8c689,
+    metalness: 0.45,
+    roughness: 0.3,
+  });
+  const seamInner = HUB_RADIUS * 0.6;
+  const seamLength = PLATE_RADIUS - seamInner;
+  for (let s = 0; s < SECTOR_COUNT; s++) {
+    const angle = THREE.MathUtils.degToRad(s * sectorSpan);
+    const seam = new THREE.Mesh(new THREE.BoxGeometry(seamLength, 0.014, 0.075), seamMaterial);
+    seam.position.set(
+      Math.cos(angle) * (seamInner + seamLength / 2),
+      PLATE_HEIGHT + 0.004,
+      -Math.sin(angle) * (seamInner + seamLength / 2),
+    );
+    seam.rotation.y = angle;
+    group.add(seam);
   }
 
   // veta de madera en los paneles, manteniendo el color de cada categoría
