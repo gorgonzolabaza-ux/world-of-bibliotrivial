@@ -1,5 +1,5 @@
-import type { ThemeKey } from './themes';
-export type { ThemeKey };
+import type { CategoryKey } from './categories';
+export type { CategoryKey };
 import type { BoardNode } from './board';
 export type { BoardNode };
 
@@ -8,7 +8,8 @@ export interface Question {
   text: string;
   options: string[];
   answerIndex: number;
-  theme: ThemeKey;
+  /** Categoría ya asignada al ingerir el examen (ver scripts/ingest.mjs). */
+  category: CategoryKey;
   difficulty: 'normal' | 'hard';
   source?: string;
 }
@@ -18,8 +19,8 @@ export interface PlayerState {
   color: string;
   position: number;
   score: number;
-  themeHits: Record<ThemeKey, number>;
-  quesitos: Set<ThemeKey>;
+  themeHits: Record<CategoryKey, number>;
+  quesitos: Set<CategoryKey>;
 }
 
 export interface GameState {

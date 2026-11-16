@@ -1,12 +1,16 @@
 ﻿import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { buildBoard, NODES, ADJ, nodePosition } from './board';
-import { createPlayerMesh } from './player';
-import { THEMES, THEME_BY_KEY, QUESITOS_NEEDED } from './themes';
+import { buildBoard, NODES, ADJ } from './board';
+import { createPlayerToken } from './token';
+import type { Race } from './player';
+import { createDie } from './die';
+import { CATEGORIES, CATEGORY_BY_KEY } from './categories';
+import type { Category, CategoryKey } from './categories';
+import { createBoardView } from './boardView';
+import { configureRenderer, createCamera, createControls, createStage, loadTableTextures } from './table';
 import { getQuestions, clearQuestionCache } from './content';
 import { loadBestRuns, saveBestRun, unlockAchievement, loadAchievements } from './persistence';
-import { ACHIEVEMENTS, achievementName } from './achievements';
-import type { GameState, PlayerState, Question, ThemeKey } from './types';
+import { achievementName } from './achievements';
+import type { GameState, PlayerState, Question } from './types';
 
 // ---------- DOM ----------
 const app = document.getElementById('app')!;
@@ -14,6 +18,8 @@ const menu = document.getElementById('menu')!;
 const hud = document.getElementById('hud')!;
 const diceBtn = document.getElementById('dice') as HTMLButtonElement;
 const modal = document.getElementById('modal')!;
+const card3d = document.getElementById('card3d')!;
+const qcat = document.getElementById('qcat')!;
 const qtext = document.getElementById('qtext')!;
 const qopts = document.getElementById('qopts')!;
 const qfeedback = document.getElementById('qfeedback')!;
@@ -22,88 +28,37 @@ const themeEl = document.getElementById('theme')!;
 const quesitosEl = document.getElementById('quesitos')!;
 const statusEl = document.getElementById('status')!;
 
-// ---------- Three.js setup ----------
+// ---------- Escena: mesa, cámara y tablero ----------
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0b0f1a);
-const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
-camera.position.set(0, 22, 22);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
+configureRenderer(renderer);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 app.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.target.set(0, 0, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-const dir = new THREE.DirectionalLight(0xffffff, 0.9);
-dir.position.set(10, 20, 10);
-scene.add(dir);
-
-// ---------- Board ----------
-buildBoard();
-const tileMeshes: THREE.Mesh[] = [];
-const tileGroup = new THREE.Group();
-scene.add(tileGroup);
-
-for (const node of NODES) {
-  const p = node.pos;
-  const geom = new THREE.CylinderGeometry(node.type === 'hub' ? 2.2 : 0.6, node.type === 'hub' ? 2.2 : 0.6, 0.25, node.type === 'hub' ? 32 : 16);
-  const theme = THEME_BY_KEY[node.theme];
-  const color = node.type === 'hub' ? 0x1a2033 : (node.type === 'rollagain' ? 0xffffff : theme.color);
-  const mat = new THREE.MeshStandardMaterial({ color, flatShading: true, emissive: node.isQuesitoSlot ? theme.color : 0x000000, emissiveIntensity: node.isQuesitoSlot ? 0.4 : 0 });
-  const mesh = new THREE.Mesh(geom, mat);
-  mesh.position.set(p.x, p.y, p.z);
-  mesh.userData.nodeId = node.id;
-  tileGroup.add(mesh);
-  tileMeshes.push(mesh);
-
-  if (node.isQuesitoSlot) {
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.06, 8, 24), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-    ring.position.set(p.x, p.y + 0.18, p.z);
-    ring.rotation.x = Math.PI / 2;
-    tileGroup.add(ring);
-  }
-}
-
-// draw spokes (paths to center)
-const spokeMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
-for (const node of NODES) {
-  if (node.type !== "headquarters") continue;
-  let outerId = -1;
-  let hubId = -1;
-  for (const nb of ADJ[node.id]) {
-    if (NODES[nb].type === "hub") hubId = nb;
-    else if (NODES[nb].type !== "headquarters") outerId = nb;
-  }
-  if (outerId >= 0) {
-    const pts = [new THREE.Vector3(NODES[outerId].pos.x, 0.15, NODES[outerId].pos.z), new THREE.Vector3(node.pos.x, 0.15, node.pos.z)];
-    const geom = new THREE.BufferGeometry().setFromPoints(pts);
-    tileGroup.add(new THREE.Line(geom, spokeMat));
-  }
-  if (hubId >= 0) {
-    const pts = [new THREE.Vector3(node.pos.x, 0.15, node.pos.z), new THREE.Vector3(NODES[hubId].pos.x, 0.15, NODES[hubId].pos.z)];
-    const geom = new THREE.BufferGeometry().setFromPoints(pts);
-    tileGroup.add(new THREE.Line(geom, spokeMat));
-  }
-}
-
-// center pegs
-const centerPegs: Record<string, THREE.Mesh> = {};
-const pegGroup = new THREE.Group();
-scene.add(pegGroup);
-THEMES.forEach((t, i) => {
-  const a = (i / THEMES.length) * Math.PI * 2;
-  const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.6, 8), new THREE.MeshStandardMaterial({ color: t.color, flatShading: true }));
-  peg.position.set(2.2 * Math.cos(a), 0.5, 2.2 * Math.sin(a));
-  peg.visible = false;
-  pegGroup.add(peg);
-  centerPegs[t.key] = peg;
+const { camera, fit, target: cameraTarget } = createCamera();
+const controls = createControls(camera, renderer.domElement, cameraTarget);
+let userMovedCamera = false;
+controls.addEventListener('start', () => {
+  userMovedCamera = true;
 });
+
+const textures = loadTableTextures(renderer);
+createStage(scene, textures);
+
+buildBoard();
+const boardView = createBoardView(textures);
+scene.add(boardView.group);
+const tileMeshes = boardView.tiles;
+
+const token = createPlayerToken('human', '#4a90d9');
+token.group.visible = false;
+scene.add(token.group);
+
+const die = await createDie();
+scene.add(die.mesh);
 
 // ---------- Game state ----------
 let state: GameState | null = null;
-let playerMesh: THREE.Group | null = null;
 let questions: Question[] = [];
 let currentQuestion: Question | null = null;
 let answering = false;
@@ -118,26 +73,43 @@ let reachablePaths: Map<number, number[]> = new Map();
 let currentPath: number[] = [];
 
 function nodeWorldPos(id: number): THREE.Vector3 {
-  const p = nodePosition(id);
-  return new THREE.Vector3(p.x, 0.6, p.z);
+  return boardView.worldPos(id);
 }
 
-function initPlayerMesh(race: any, color: string) {
-  if (playerMesh) scene.remove(playerMesh);
-  playerMesh = createPlayerMesh(race, color);
-  scene.add(playerMesh);
-  playerMesh.position.copy(nodeWorldPos(0));
+/** Abre la carta mostrando el dorso y la gira al cabo de un instante. */
+let flipTimer: number | undefined;
+function openCard() {
+  window.clearTimeout(flipTimer);
+  modal.classList.add('open');
+  card3d.classList.remove('flipped');
+  flipTimer = window.setTimeout(() => card3d.classList.add('flipped'), 360);
+}
+
+/** Devuelve la carta a su dorso antes de retirarla. */
+function closeCard() {
+  window.clearTimeout(flipTimer);
+  card3d.classList.remove('flipped');
+  flipTimer = window.setTimeout(() => modal.classList.remove('open'), 300);
+}
+
+function initPlayerMesh(race: Race, color: string) {
+  token.setRace(race, color);
+  token.group.visible = true;
+  token.group.position.copy(nodeWorldPos(0));
 }
 
 function renderQuesitos() {
   quesitosEl.innerHTML = '';
   if (!state) return;
   const p = state.players[0];
-  for (const t of THEMES) {
+  for (const category of CATEGORIES) {
     const el = document.createElement('div');
-    el.className = 'quesito' + (p.quesitos.has(t.key as ThemeKey) ? ' on' : '');
-    el.style.color = t.css;
-    el.style.background = p.quesitos.has(t.key as ThemeKey) ? t.css : 'transparent';
+    const earned = p.quesitos.has(category.key);
+    el.className = 'quesito' + (earned ? ' on' : '');
+    el.style.setProperty('--cat', category.css);
+    el.style.setProperty('--icon', `url("${category.icon}")`);
+    el.title = category.name;
+    el.setAttribute('aria-label', category.name);
     quesitosEl.appendChild(el);
   }
 }
@@ -147,9 +119,18 @@ function updateHUD() {
   const p = state.players[0];
   scoreEl.textContent = p.score.toFixed(2);
   const node = NODES[p.position];
-  themeEl.textContent = node.type === 'hub' ? 'Centro' : THEME_BY_KEY[node.theme].name;
-  const hitsEl = document.getElementById('themeHits')!;
-  hitsEl.textContent = node.type === 'hub' ? '-' : `${p.themeHits[node.theme] || 0}/${QUESITOS_NEEDED}`;
+  if (node.type === 'hub') {
+    themeEl.textContent = 'Centro';
+    themeEl.style.color = '#d9b475';
+    const hitsEl = document.getElementById('themeHits')!;
+    hitsEl.textContent = '-';
+  } else {
+    const category = CATEGORY_BY_KEY[node.category];
+    themeEl.textContent = category.name;
+    themeEl.style.color = category.css;
+    const hitsEl = document.getElementById('themeHits')!;
+    hitsEl.textContent = `${p.themeHits[node.category] || 0}`;
+  }
   renderQuesitos();
 }
 
@@ -166,8 +147,8 @@ async function startGame() {
 
   const player: PlayerState = {
     race, color, position: 0, score: 0,
-    themeHits: Object.fromEntries(THEMES.map((t) => [t.key, 0])) as any,
-    quesitos: new Set(),
+    themeHits: Object.fromEntries(CATEGORIES.map((c) => [c.key, 0])) as Record<CategoryKey, number>,
+    quesitos: new Set<CategoryKey>(),
   };
 
   state = {
@@ -186,8 +167,16 @@ async function startGame() {
   menu.style.display = 'none';
   hud.style.display = 'block';
   diceBtn.style.display = 'block';
+  diceBtn.textContent = '🎲 Lanzar dado';
+  diceBtn.disabled = false;
 
-  for (const t of THEMES) centerPegs[t.key].visible = false;
+  boardView.resetQuesitos();
+  token.reset();
+
+  // ayuda de desarrollo: ?debug=quesitos arranca con las seis cuñas puestas
+  if (new URLSearchParams(window.location.search).get('debug') === 'quesitos') {
+    CATEGORIES.forEach((c) => token.setQuesito(c.key, true));
+  }
 
   updateHUD();
   statusEl.textContent = `Cargadas ${questions.length} preguntas (${difficulty}).`;
@@ -236,18 +225,7 @@ function computeReachable(start: number, steps: number): { nodes: Set<number>; p
 }
 
 function highlightReachable(on: boolean) {
-  tileMeshes.forEach((m) => {
-    const id = m.userData.nodeId as number;
-    if (on && reachableNodes.has(id)) {
-      (m.material as THREE.MeshStandardMaterial).emissive.set(0xffffff);
-      (m.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.6;
-    } else {
-      const node = NODES[id];
-      const theme = THEME_BY_KEY[node.theme];
-      (m.material as THREE.MeshStandardMaterial).emissive.set(node.isQuesitoSlot ? theme.color : 0x000000);
-      (m.material as THREE.MeshStandardMaterial).emissiveIntensity = node.isQuesitoSlot ? 0.4 : 0;
-    }
-  });
+  boardView.highlight(on ? reachableNodes : null);
 }
 
 diceBtn.addEventListener('click', async () => {
@@ -263,8 +241,8 @@ diceBtn.addEventListener('click', async () => {
   }
   animating = true;
   diceBtn.disabled = true;
-  const roll = 1 + Math.floor(Math.random() * 6);
-  diceBtn.textContent = `ðŸŽ² ${roll}`;
+  diceBtn.textContent = 'Tirando…';
+  const roll = await die.roll();
   const { nodes, paths } = computeReachable(state.players[0].position, roll);
   reachableNodes = nodes;
   reachablePaths = paths;
@@ -273,7 +251,7 @@ diceBtn.addEventListener('click', async () => {
   highlightReachable(true);
   diceBtn.disabled = false;
   diceBtn.textContent = '🎲 Cancelar y re-tirar';
-  statusEl.textContent = `Elige una casilla a ${roll} pasos (clic en una casilla resaltada).`;
+  statusEl.textContent = `Sacas un ${roll}: elige una casilla a ${roll} ${roll === 1 ? 'paso' : 'pasos'}.`;
 });
 
 // click to select destination
@@ -310,36 +288,69 @@ async function animatePath(path: number[]) {
   }
   animating = false;
   diceBtn.disabled = false;
-  diceBtn.textContent = 'ðŸŽ² Lanzar dado';
+  diceBtn.textContent = '🎲 Lanzar dado';
 }
 
 function sleep(ms: number) { return new Promise((r) => setTimeout(r, ms)); }
 
 function animateMove(target: THREE.Vector3): Promise<void> {
   return new Promise((resolve) => {
-    if (!playerMesh) { resolve(); return; }
-    const start = playerMesh.position.clone();
-    const duration = 160;
+    const start = token.group.position.clone();
+    const duration = 170;
     const t0 = performance.now();
     function step() {
       const now = performance.now();
       const t = Math.min(1, (now - t0) / duration);
       const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-      playerMesh!.position.lerpVectors(start, target, eased);
-      playerMesh!.position.y = 0.6 + Math.sin(t * Math.PI) * 0.6;
+      token.group.position.lerpVectors(start, target, eased);
+      token.group.position.y = target.y + Math.sin(t * Math.PI) * 0.5;
       if (t < 1) requestAnimationFrame(step);
-      else { playerMesh!.position.copy(target); resolve(); }
+      else { token.group.position.copy(target); resolve(); }
     }
     requestAnimationFrame(step);
   });
 }
 
 // ---------- Questions ----------
-function pickQuestion(theme: ThemeKey): Question | null {
+function pickQuestion(category: CategoryKey): Question | null {
   if (!state) return null;
-  const pool = state.questions.filter((q) => q.theme === theme);
+  const pool = state.questions.filter((q) => q.category === category);
   if (pool.length === 0) return null;
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/**
+ * En el centro el jugador elige categoría (regla del Trivial para cuando aún
+ * no tiene las seis cuñas). Se reutiliza la carta ya abierta: solo cambia el
+ * contenido, sin volver a girarla.
+ */
+function chooseCategory(options: Category[]): Promise<CategoryKey> {
+  return new Promise((resolve) => {
+    currentQuestion = null;
+    answering = false;
+    qcat.textContent = 'Centro';
+    qcat.style.color = '#f3d79b';
+    qcat.style.backgroundColor = 'rgba(217,180,117,0.18)';
+    qtext.textContent = 'Elige la categoría de la pregunta';
+    qfeedback.textContent = '';
+    qopts.innerHTML = '';
+    for (const category of options) {
+      const btn = document.createElement('button');
+      btn.textContent = category.name;
+      btn.style.borderLeft = `4px solid ${category.css}`;
+      btn.addEventListener(
+        'click',
+        () => {
+          qopts.innerHTML = '';
+          statusEl.textContent = `Pregunta de ${category.name}.`;
+          resolve(category.key);
+        },
+        { once: true },
+      );
+      qopts.appendChild(btn);
+    }
+    openCard();
+  });
 }
 
 async function onLand(nodeId: number) {
@@ -347,31 +358,44 @@ async function onLand(nodeId: number) {
   const node = NODES[nodeId];
   const p = state.players[0];
 
+  // "tira otra vez": tirada extra sin pregunta
   if (node.type === 'rollagain') {
-    statusEl.textContent = 'Casilla "Tira otra vez": vuelve a lanzar.';
+    statusEl.textContent = 'Casilla "Tira otra vez": vuelves a lanzar sin pregunta.';
+    window.setTimeout(() => {
+      if (state && !state.finished && !animating && !choosingMove && !modal.classList.contains('open')) diceBtn.click();
+    }, 900);
     return;
   }
 
+  // centro
   if (node.type === 'hub') {
-    let cat: ThemeKey;
-    const missing = THEMES.filter((t) => !p.quesitos.has(t.key as ThemeKey));
-    if (missing.length > 0 && p.quesitos.size < THEMES.length) {
-      cat = missing[Math.floor(Math.random() * missing.length)].key as ThemeKey;
-    } else {
-      cat = THEMES[Math.floor(Math.random() * THEMES.length)].key as ThemeKey;
+    const isFinal = p.quesitos.size >= CATEGORIES.length;
+    if (isFinal) {
+      // la pregunta final es de una categoría elegida por los rivales: aquí, al azar
+      const category = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].key;
+      const q = pickQuestion(category);
+      if (q) await askQuestion(q, false, true);
+      return;
     }
-    const isFinal = p.quesitos.size >= THEMES.length;
-    const q = pickQuestion(cat);
-    if (q) await askQuestion(q, false, isFinal);
+    const missing = CATEGORIES.filter((c) => !p.quesitos.has(c.key));
+    const category = await chooseCategory(missing);
+    const q = pickQuestion(category);
+    if (q) await askQuestion(q, false, false, true);
     return;
   }
 
-  const q = pickQuestion(node.theme);
+  // casilla normal o sede de categoría
+  const q = pickQuestion(node.category);
   if (q) await askQuestion(q, node.isQuesitoSlot, false);
 }
-async function askQuestion(q: Question, isHeadquarters: boolean, isFinal: boolean) {
+
+async function askQuestion(q: Question, isHeadquarters: boolean, isFinal: boolean, alreadyOpen = false) {
   currentQuestion = q;
   answering = false;
+  const category = CATEGORY_BY_KEY[q.category];
+  qcat.textContent = isFinal ? 'Pregunta final' : category.name;
+  qcat.style.color = isFinal ? '#f5c518' : '#ffffff';
+  qcat.style.backgroundColor = isFinal ? 'rgba(245,197,24,0.18)' : category.css;
   qtext.textContent = q.text;
   qopts.innerHTML = '';
   q.options.forEach((opt, i) => {
@@ -381,7 +405,7 @@ async function askQuestion(q: Question, isHeadquarters: boolean, isFinal: boolea
     qopts.appendChild(btn);
   });
   qfeedback.textContent = '';
-  modal.classList.add('open');
+  if (!alreadyOpen) openCard();
 }
 
 async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boolean) {
@@ -390,24 +414,25 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
   qopts.querySelectorAll('button').forEach((b) => ((b as HTMLButtonElement).disabled = true));
   const q = currentQuestion;
   const p = state.players[0];
+  const category = q.category;
   const correct = idx === q.answerIndex;
   if (correct) {
     p.score += 1;
-    p.themeHits[q.theme] = (p.themeHits[q.theme] || 0) + 1;
+    p.themeHits[category] = (p.themeHits[category] || 0) + 1;
     streak += 1;
-    qfeedback.textContent = 'âœ… Â¡Correcto! (+1)';
+    qfeedback.textContent = '✅ ¡Correcto! (+1)';
     qfeedback.style.color = '#2ecc71';
-    if (isHeadquarters && p.themeHits[q.theme] >= QUESITOS_NEEDED && !p.quesitos.has(q.theme)) {
-      p.quesitos.add(q.theme);
-      centerPegs[q.theme].visible = true;
-      unlockAchievement('quesito_' + q.theme);
-      qfeedback.textContent += ' ðŸ§€ Â¡Quesito conseguido!';
+    // regla del Trivial: acertar en la sede de una categoría te da su cuña
+    if (isHeadquarters && !p.quesitos.has(category)) {
+      p.quesitos.add(category);
+      boardView.setQuesito(category, true);
+      token.setQuesito(category, true);
+      unlockAchievement('quesito_' + category);
+      if (!perThemeWrong[category]) unlockAchievement('perfect_theme_' + category);
+      qfeedback.textContent += ' 🧀 ¡Quesito conseguido!';
     }
     if (streak === 5) unlockAchievement('streak_5');
     if (streak === 10) unlockAchievement('streak_10');
-    if (!perThemeWrong[q.theme] && p.themeHits[q.theme] === QUESITOS_NEEDED) {
-      unlockAchievement('perfect_theme_' + q.theme);
-    }
     if (isFinal) {
       finalWon = true;
       // win
@@ -420,15 +445,18 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
       if (duration < 5 * 60 * 1000) unlockAchievement('speed_demon');
       setTimeout(() => {
         modal.classList.add('open');
-        qtext.textContent = 'ðŸ† Â¡Partida completada!';
+        qcat.textContent = 'Partida completada';
+        qcat.style.backgroundColor = 'rgba(245,197,24,0.18)';
+        qcat.style.color = '#f5c518';
+        qtext.textContent = '🏆 ¡Has ganado!';
         qopts.innerHTML = '';
-        qfeedback.textContent = `Tiempo: ${(duration / 1000).toFixed(1)}s Â· Puntos: ${p.score.toFixed(2)}`;
+        qfeedback.textContent = `Tiempo: ${(duration / 1000).toFixed(1)}s · Puntos: ${p.score.toFixed(2)}`;
         qfeedback.style.color = '#f5c518';
         const backBtn = document.createElement('button');
-        backBtn.textContent = 'Volver al menÃº';
+        backBtn.textContent = 'Volver al menú';
         backBtn.style.marginTop = '12px';
         backBtn.addEventListener('click', () => {
-          modal.classList.remove('open');
+          closeCard();
           menu.style.display = 'flex';
           hud.style.display = 'none';
           diceBtn.style.display = 'none';
@@ -440,15 +468,19 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
   } else {
     p.score -= 1 / 3;
     streak = 0;
-    perThemeWrong[q.theme] = true;
-    qfeedback.textContent = `âŒ Incorrecto. La respuesta era ${'ABCD'[q.answerIndex]}. (-1/3)`;
+    perThemeWrong[category] = true;
+    qfeedback.textContent = `❌ Incorrecto. La respuesta era ${'ABCD'[q.answerIndex]}. (-1/3)`;
     qfeedback.style.color = '#e74c3c';
+    if (isFinal) {
+      // regla del Trivial: si fallas la final, tienes que salir del centro y volver
+      qfeedback.textContent += ' Sal del centro y vuelve para intentarlo otra vez.';
+    }
   }
   updateHUD();
 
   setTimeout(() => {
     if (finalWon) { finalWon = false; return; }
-    modal.classList.remove('open');
+    closeCard();
     currentQuestion = null;
     answering = false;
     choosingMove = false;
@@ -456,11 +488,13 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
   }, 1400);
 }
 
-function checkEnd() { /* handled in answerQuestion */ }
-
 // ---------- Render loop ----------
+const clock = new THREE.Clock();
 function animate() {
   requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 0.05);
+  die.update(dt);
+  token.update(dt);
   controls.update();
   renderer.render(scene, camera);
 }
@@ -470,6 +504,7 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  if (!userMovedCamera) fit();
 });
 
 async function refreshMenuStats() {
@@ -494,6 +529,6 @@ loadAchievements().then((a) => {
   if (a.length) statusEl.textContent = `Logros desbloqueados: ${a.length}`;
 });
 loadBestRuns().then((r) => {
-  if (r.length) statusEl.textContent = (statusEl.textContent || '') + ` Â· Mejores partidas: ${r.length}`;
+  if (r.length) statusEl.textContent = (statusEl.textContent || '') + ` · Mejores partidas: ${r.length}`;
 });
 refreshMenuStats();

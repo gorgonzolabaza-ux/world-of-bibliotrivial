@@ -1,16 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-function copyDir(src, dst) {
-  if (!fs.existsSync(src)) return;
-  fs.mkdirSync(dst, { recursive: true });
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    const s = path.join(src, entry.name);
-    const d = path.join(dst, entry.name);
-    if (entry.isDirectory()) copyDir(s, d);
-    else fs.copyFileSync(s, d);
-  }
+/**
+ * Publica solo lo que el juego necesita: el manifest y los JSON de preguntas.
+ * Los PDF de origen (content/oposiciones/**) se quedan fuera del despliegue.
+ */
+const src = path.resolve('content');
+const dst = path.resolve('dist', 'content');
+
+fs.mkdirSync(path.join(dst, 'questions'), { recursive: true });
+fs.copyFileSync(path.join(src, 'manifest.json'), path.join(dst, 'manifest.json'));
+
+let copied = 0;
+for (const entry of fs.readdirSync(path.join(src, 'questions'), { withFileTypes: true })) {
+  if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+  fs.copyFileSync(path.join(src, 'questions', entry.name), path.join(dst, 'questions', entry.name));
+  copied++;
 }
 
-copyDir(path.resolve('content'), path.resolve('dist', 'content'));
-console.log('Content copied to dist/content');
+console.log(`Contenido publicado: manifest.json + ${copied} fichero(s) de preguntas (los PDF no se publican)`);

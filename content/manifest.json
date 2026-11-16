@@ -1,36 +1,13 @@
 {
   "version": 1,
-  "description": "Manifest de contenido de oposiciones. Edita este archivo para añadir exámenes.",
+  "description": "Fuentes de preguntas. Lo genera scripts/ingest.mjs con --register; no hace falta editarlo a mano.",
   "sources": [
     {
-      "id": "ejemplo-normal",
-      "difficulty": "normal",
-      "year": 2024,
-      "format": "json",
-      "exam": "content/questions/ejemplo-normal.json"
-    },
-    {
-      "id": "ejemplo-hard",
-      "difficulty": "hard",
-      "year": 2024,
-      "format": "json",
-      "exam": "content/questions/ejemplo-hard.json"
-    },
-    {
-      "id": "op-2024-normal-pdf",
-      "difficulty": "normal",
-      "year": 2024,
-      "format": "pdf",
-      "exam": "content/oposiciones/normal/2024/examen.pdf",
-      "answers": "content/oposiciones/normal/2024/respuestas.pdf"
-    },
-    {
-      "id": "examen1-2024",
+      "id": "examen1-2022",
       "difficulty": "normal",
       "year": 2022,
       "format": "json",
-      "exam": "content/questions/examen1-normal.json"
+      "exam": "content/questions/examen1-2022.json"
     }
   ]
 }
-

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Trivial 3D sobre oposiciones de Auxiliares de Bibliotecas (Ministerio de Cultura)",
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node scripts/copy-content.mjs",
@@ -10,12 +11,13 @@
     "ingest": "node scripts/ingest.mjs"
   },
   "dependencies": {
+    "cannon-es": "^0.20.0",
     "idb-keyval": "^6.2.2",
-    "pdfjs-dist": "^5.4.54",
     "three": "^0.180.0"
   },
   "devDependencies": {
     "@types/three": "^0.180.0",
+    "pdfjs-dist": "^5.4.54",
     "typescript": "^5.9.3",
     "vite": "^7.1.7"
   }

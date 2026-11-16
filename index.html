@@ -5,35 +5,256 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>World of BiblioTrivial</title>
   <style>
-    html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; background: #0b0f1a; font-family: system-ui, sans-serif; color: #eee; }
+    :root {
+      --gold: #d9b475;
+      --gold-bright: #f3d79b;
+      --ink: #0c0a08;
+      --panel: rgba(20, 16, 12, 0.86);
+      --panel-line: rgba(217, 180, 117, 0.35);
+      --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+      --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; overflow: hidden; height: 100%;
+      background: var(--ink); color: #f2eadd; font-family: var(--sans);
+    }
     #app { position: fixed; inset: 0; }
-    #hud { position: fixed; top: 12px; left: 12px; z-index: 10; background: rgba(0,0,0,0.55); padding: 10px 14px; border-radius: 10px; backdrop-filter: blur(6px); min-width: 220px; }
-    #hud h1 { margin: 0 0 6px; font-size: 16px; }
-    #hud .row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
-    #dice { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 10; padding: 10px 18px; border-radius: 10px; border: none; background: #f5c518; color: #111; font-weight: 700; cursor: pointer; }
-    #dice:disabled { opacity: 0.5; cursor: not-allowed; }
-    #modal { position: fixed; inset: 0; z-index: 20; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); }
+    #app canvas { display: block; }
+    /* viñeta: foco de luz sobre la mesa */
+    #app::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 5;
+      background: radial-gradient(ellipse 78% 74% at 50% 46%, transparent 46%, rgba(0,0,0,0.42) 100%);
+    }
+
+    /* ---------- HUD: bandeja del jugador ---------- */
+    #hud {
+      position: fixed; top: 16px; left: 16px; z-index: 10;
+      background: var(--panel);
+      border: 1px solid var(--panel-line);
+      border-radius: 14px;
+      padding: 14px 16px 12px;
+      min-width: 268px;
+      box-shadow: 0 18px 40px -18px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+    }
+    #hud h1 {
+      margin: 0 0 10px; font-family: var(--serif); font-size: 15px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold);
+    }
+    #hud h1::after {
+      content: ''; display: block; height: 1px; margin-top: 8px;
+      background: linear-gradient(90deg, var(--panel-line), transparent);
+    }
+    #hud .row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 12px; font-size: 13px; padding: 3px 0; color: rgba(242,234,221,0.72);
+    }
+    #hud .row span:last-child { font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+    #score { font-family: var(--serif); font-size: 17px; color: var(--gold-bright) !important; }
+
+    .quesitos { display: flex; gap: 7px; margin-top: 10px; }
+    .quesito {
+      position: relative; width: 30px; height: 30px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.13);
+      background: rgba(0,0,0,0.4);
+      display: grid; place-items: center;
+      transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+    }
+    .quesito::before {
+      content: ''; width: 17px; height: 17px;
+      background-color: var(--cat, #888);
+      opacity: .5;
+      -webkit-mask: var(--icon) center / contain no-repeat;
+      mask: var(--icon) center / contain no-repeat;
+      transition: opacity .22s ease;
+    }
+    .quesito.on {
+      border-color: var(--cat);
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px -1px var(--cat), inset 0 0 12px -5px var(--cat);
+    }
+    .quesito.on::before { opacity: 1; }
+
+    /* ---------- botón del dado ---------- */
+    #dice {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 10;
+      padding: 13px 30px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25);
+      background: linear-gradient(180deg, #f3d79b, #cfa458);
+      color: #241a08; font-family: var(--serif); font-weight: 700; font-size: 16px;
+      letter-spacing: 0.02em; cursor: pointer;
+      box-shadow: 0 14px 28px -12px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.6);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    #dice:hover:not(:disabled) { filter: brightness(1.06); transform: translateX(-50%) translateY(-1px); }
+    #dice:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ---------- carta de pregunta: se voltea sobre la mesa ---------- */
+    #modal {
+      position: fixed; inset: 0; z-index: 20; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(4, 3, 2, 0.5);
+      perspective: 1700px;
+    }
     #modal.open { display: flex; }
-    #modal .card { background: #1a2033; padding: 20px; border-radius: 14px; max-width: 520px; width: 90%; }
-    #modal .card h2 { margin-top: 0; }
-    #modal .opts { display: grid; gap: 8px; margin: 12px 0; }
-    #modal .opts button { text-align: left; padding: 10px; border-radius: 8px; border: 1px solid #334; background: #232a40; color: #eee; cursor: pointer; }
-    #modal .opts button:hover { background: #2e3755; }
-    #menu { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg,#0b0f1a,#1a2033); }
-    #menu .panel { background: rgba(255,255,255,0.06); padding: 28px; border-radius: 16px; width: 360px; }
-    #menu label { display: block; margin: 10px 0 4px; font-size: 13px; }
-    #menu select, #menu input { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #334; background: #11162a; color: #eee; }
-    #menu button { margin-top: 16px; width: 100%; padding: 12px; border: none; border-radius: 10px; background: #f5c518; color: #111; font-weight: 700; cursor: pointer; }
-    .quesitos { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-    .quesito { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #555; }
-    .quesito.on { border-color: #fff; box-shadow: 0 0 6px currentColor; }
+    .card3d {
+      position: relative;
+      width: min(600px, 92vw);
+      min-height: 300px;
+      transform-style: preserve-3d;
+      transform: rotateX(4deg) rotateY(0deg) translateY(14px) scale(0.94);
+      transition: transform .66s cubic-bezier(.19, 1, .22, 1);
+    }
+    .card3d.flipped {
+      transform: rotateX(4deg) rotateY(180deg) translateY(0) scale(1);
+    }
+    .card-face {
+      position: absolute; inset: 0;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+      box-shadow: 0 46px 84px -34px #000;
+    }
+    .card-back {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(217,180,117,0.2), transparent 62%),
+        repeating-linear-gradient(45deg, rgba(217,180,117,0.055) 0 9px, transparent 9px 18px),
+        linear-gradient(160deg, #2a2118, #120e0a);
+      border: 1px solid rgba(217,180,117,0.42);
+      display: grid; place-items: center;
+    }
+    .card-back .emblem {
+      width: 132px; height: 132px; border-radius: 50%;
+      border: 2px solid rgba(217,180,117,0.55);
+      display: grid; place-items: center;
+      font-family: var(--serif); font-size: 56px; font-weight: 700; color: var(--gold-bright);
+      box-shadow: inset 0 0 42px -14px rgba(217,180,117,0.55);
+    }
+    .card-back .brand {
+      position: absolute; bottom: 26px;
+      font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(217,180,117,0.66);
+    }
+    .card-front {
+      position: relative; inset: auto;
+      max-height: 84vh;
+      transform: rotateY(180deg);
+      background: linear-gradient(180deg, #241d16, #15110d);
+      border: 1px solid rgba(217,180,117,0.3);
+      padding: 26px 28px 22px;
+      display: flex; flex-direction: column;
+    }
+    .opts-scroll { flex: 1; overflow-y: auto; margin: 0 -4px; padding: 0 4px; }
+    .opts-scroll::-webkit-scrollbar { width: 8px; }
+    .opts-scroll::-webkit-scrollbar-thumb { background: rgba(217,180,117,0.25); border-radius: 4px; }
+    #qcat {
+      display: inline-block; align-self: flex-start; margin-bottom: 14px;
+      padding: 4px 12px; border-radius: 999px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #fff; background: #555;
+    }
+    #qtext {
+      margin: 0 0 18px; font-family: var(--serif); font-size: 20.5px; line-height: 1.36;
+      font-weight: 600; color: #fbf5ea;
+    }
+    #qopts { display: grid; gap: 9px; }
+    #qopts button {
+      text-align: left; padding: 13px 16px; border-radius: 11px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.045); color: #efe7da;
+      font-family: var(--sans); font-size: 14.5px; line-height: 1.35; cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, transform .1s ease;
+    }
+    #qopts button:hover:not(:disabled) {
+      background: rgba(217,180,117,0.14); border-color: var(--panel-line); transform: translateX(2px);
+    }
+    #qopts button:disabled { opacity: 0.55; cursor: default; }
+    #qfeedback { margin-top: 14px; font-weight: 700; font-size: 15px; min-height: 1.2em; }
+
+    /* ---------- menú ---------- */
+    #menu {
+      position: fixed; inset: 0; z-index: 30; display: flex;
+      align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 50% 40%, rgba(10,8,6,0.35), rgba(4,3,2,0.88));
+      backdrop-filter: blur(2px);
+    }
+    #menu .panel {
+      width: 400px; padding: 34px 32px 28px; border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid var(--panel-line);
+      box-shadow: 0 50px 90px -40px #000, inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    #menu h1 {
+      margin: 0 0 4px; font-family: var(--serif); font-size: 27px; font-weight: 700;
+      letter-spacing: 0.01em; color: var(--gold-bright); text-align: center;
+    }
+    #menu .sub {
+      margin: 0 0 22px; text-align: center; font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(217,180,117,0.72);
+    }
+    #menu label {
+      display: block; margin: 14px 0 5px; font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(242,234,221,0.55);
+    }
+    #menu select, #menu input[type="color"] {
+      width: 100%; padding: 10px 12px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.45); color: #f2eadd; font-family: var(--sans); font-size: 14px;
+    }
+    #menu input[type="color"] { height: 42px; padding: 4px; cursor: pointer; }
+    #menu button {
+      width: 100%; margin-top: 18px; padding: 13px; border-radius: 12px; border: none;
+      background: linear-gradient(180deg, #f3d79b, #cfa458); color: #241a08;
+      font-family: var(--serif); font-weight: 700; font-size: 16px; cursor: pointer;
+      box-shadow: 0 12px 24px -14px #000, inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    #menu button:hover { filter: brightness(1.05); }
+    #menu #updateBtn {
+      margin-top: 9px; padding: 10px; background: transparent; color: rgba(242,234,221,0.8);
+      border: 1px solid rgba(255,255,255,0.14); box-shadow: none;
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+    }
+    #menu #updateBtn:hover { border-color: var(--panel-line); color: #fff; }
+    #status, #bestRuns, #achList {
+      margin-top: 14px; font-size: 11.5px; line-height: 1.5; color: rgba(242,234,221,0.55);
+    }
+    #bestRuns, #achList { margin-top: 8px; }
   </style>
 </head>
 <body>
   <div id="app"></div>
+
+  <div id="hud" style="display:none;">
+    <h1>World of BiblioTrivial</h1>
+    <div class="row"><span>Puntos</span><span id="score">0</span></div>
+    <div class="row"><span>Categoría</span><span id="theme">-</span></div>
+    <div class="row"><span>Aciertos</span><span id="themeHits">0</span></div>
+    <div id="quesitos" class="quesitos"></div>
+  </div>
+
+  <button id="dice" style="display:none;">🎲 Lanzar dado</button>
+
+  <div id="modal">
+    <div class="card3d" id="card3d">
+      <div class="card-face card-back">
+        <div class="emblem">B</div>
+        <div class="brand">World of BiblioTrivial</div>
+      </div>
+      <div class="card-face card-front">
+        <div id="qcat"></div>
+        <h2 id="qtext"></h2>
+        <div class="opts-scroll"><div id="qopts"></div></div>
+        <div id="qfeedback"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="menu">
     <div class="panel">
       <h1>World of BiblioTrivial</h1>
+      <p class="sub">Oposiciones · Auxiliares de Biblioteca</p>
       <label>Raza</label>
       <select id="race">
         <option value="human">Humano</option>
@@ -46,30 +267,16 @@
         <option value="normal">Normal (C1/C2)</option>
         <option value="hard">Difícil (A1/A2)</option>
       </select>
-      <label>Color</label>
+      <label>Color de la ficha</label>
       <input type="color" id="color" value="#4a90d9" />
       <button id="startBtn">Comenzar partida</button>
-      <button id="updateBtn" style="background:#2e3755;color:#eee;margin-top:8px;">Actualizar contenido</button>
-      <div id="status" style="margin-top:10px;font-size:12px;opacity:0.8;"></div>
-      <div id="bestRuns" style="margin-top:10px;font-size:12px;opacity:0.9;"></div>
-      <div id="achList" style="margin-top:10px;font-size:12px;opacity:0.9;"></div>
+      <button id="updateBtn">Actualizar contenido</button>
+      <div id="status"></div>
+      <div id="bestRuns"></div>
+      <div id="achList"></div>
     </div>
   </div>
-  <div id="hud" style="display:none;">
-    <h1>World of BiblioTrivial</h1>
-    <div class="row"><span>Puntos</span><span id="score">0</span></div>
-    <div class="row"><span>Tema actual</span><span id="theme">-</span></div>
-    <div class="row"><span>Aciertos tema</span><span id="themeHits">0/10</span></div>
-    <div id="quesitos" class="quesitos"></div>
-  </div>
-  <button id="dice" style="display:none;">🎲 Lanzar dado</button>
-  <div id="modal">
-    <div class="card">
-      <h2 id="qtext"></h2>
-      <div class="opts" id="qopts"></div>
-      <div id="qfeedback" style="margin-top:8px;font-weight:700;"></div>
-    </div>
-  </div>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

@@ -1,1207 +1,25 @@
 {
+  "id": "examen1-2022",
+  "title": "examen1",
+  "difficulty": "normal",
+  "year": 2022,
   "questions": [
     {
-      "id": "examen1-46",
-      "text": "2. Señale la respuesta incorrecta en relación con el Defensor del Pueblo regulado en el artículo 54 de la Constitución Española:",
-      "options": [
-        "Una ley orgánica regulará la institución del Defensor del Pueblo.",
-        "Es un alto comisionado de las Cortes Generales.",
-        "Es designado por el Presidente del Gobierno.",
-        "Puede supervisar la actividad de la Administración."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-3",
-      "text": "¿Cómo se define la provincia según el artículo 141 de la Constitución Española?, señale la respuesta correcta:",
-      "options": [
-        "Entidad local.",
-        "Corporación local.",
-        "Organización territorial.",
-        "División territorial."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-4",
-      "text": "El Estatuto de Autonomía de Castilla y León se integra dentro del ordenamiento jurídico del Estado Español con rango de:",
-      "options": [
-        "Ley Ordinaria.",
-        "Ley Básica Estatutaria.",
-        "Ley Orgánica.",
-        "Ley Autonómica."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-5",
-      "text": "¿Cuál de los siguientes elementos NO es símbolo de la Comunidad de Castilla y León, conforme al artículo 6 del Estatuto de Autonomía de Castilla y León?",
-      "options": [
-        "El castellano.",
-        "El blasón.",
-        "La bandera.",
-        "El himno."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-6",
-      "text": "Según el artículo 15 de la Ley 3/2001, 3 de julio, del Gobierno y de la Administración de la Comunidad de Castilla y León, la Junta de Castilla y León se compone:",
-      "options": [
-        "Del Presidente, Vicepresidente o Vicepresidentes y de un máximo de nueve consejeros.",
-        "Del Presidente, Vicepresidente, consejeros y viceconsejeros. 2",
-        "Del Presidente, Vicepresidente o Vicepresidentes, en su caso, y un máximo de diez consejeros.",
-        "Del Presidente, Vicepresidente o Vicepresidentes, en su caso, y un máximo de nueve consejeros."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-7",
-      "text": "¿Cuál de las siguientes instituciones NO es institución propia de la Comunidad de Castilla y León, conforme establece artículo 19 del Estatuto de Autonomía de Castilla y León?",
-      "options": [
-        "El Procurador del Común.",
-        "El Consejo Económico y Social.",
-        "El Consejo Consultivo.",
-        "El Presidente de la Junta de Castilla y León."
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-8",
-      "text": "Conforme al artículo 21.2 del Estatuto de Autonomía, la circunscripción electoral es la provincia, asignándose a cada una un número mínimo de:",
-      "options": [
-        "Dos procuradores.",
-        "Tres procuradores.",
-        "Cuatro procuradores.",
-        "No hay un número mínimo, el número de procuradores está determinado por la población total de la provincia."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-9",
-      "text": "¿A qué órgano se atribuye la coordinación y gestión de las competencias de la Administración General de la Comunidad en cada provincia, según el artículo 41 de la Ley 3/2001, de 3 de julio, del Gobierno y de la Administración de la Comunidad de Castilla y León?, señale la respuesta correcta:",
-      "options": [
-        "Las Direcciones Provinciales.",
-        "Los Servicios Territoriales.",
-        "Las Delegaciones Territoriales.",
-        "Las Diputaciones Provinciales."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-10",
-      "text": "Se entiende por violencia de género de acuerdo con el artículo 2 de la Ley 13/2010, de 9 de diciembre, contra la violencia de género en Castilla y León :",
-      "options": [
-        "Cualquier acto de violencia hacia las mujeres que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico, siempre que se produzca en la vida privada.",
-        "Cualquier acto de violencia hacia las mujeres que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico, tanto si se produce en la vida pública como privada. 3",
-        "Cualquier acto de violencia hacia las mujeres o los hombres que se ejerza por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico.",
-        "Cualquier acto de violencia hacia las mujeres mayores de edad que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-11",
-      "text": "Según el artículo 8 del Texto Refundido de la Ley del Estatuto Básico del Empleado Público, NO es una clase de empleado público, señale la respuesta correcta :",
-      "options": [
-        "El funcionario de carrera.",
-        "El personal laboral.",
-        "El funcionario interino.",
-        "El funcionario eventual."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-12",
-      "text": "La reserva de vacantes de personal laboral de la Administración General de la Comunidad de Castilla y León a las personas con discapacidad en los procesos selectivos de personal de nuevo ingreso será como mínimo, según el artículo 25 del Convenio Colectivo para el personal laboral de la Administración General de la Comunidad de Castilla y León y Organismos Autónomos:",
-      "options": [
-        "5 por ciento.",
-        "10 por ciento.",
-        "15 por ciento.",
-        "El que permitan las circunstancias de las plazas vacantes."
-      ],
-      "answer": 1,
-      "theme": "gestion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-13",
-      "text": "Son órganos específicos de representación de los funcionarios, según el artículo 39 del Texto Refundido de la Ley del Estatuto Básico del Empleado Público:",
-      "options": [
-        "Sindicatos y Juntas de Personal.",
-        "Delegados de personal y secciones sindicales.",
-        "Delegados de personal y Juntas de Personal.",
-        "Funcionarios liberados y Juntas de Personal."
-      ],
-      "answer": 2,
-      "theme": "gestion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-14",
-      "text": "Tendrán la consideración de trabajadores fijos discontinuos, según el artículo 105 del Convenio Colectivo para el personal laboral de la Administración General de la Comunidad de Castilla y León y Organismos Autónomos :",
-      "options": [
-        "Quienes presten sus servicios durante un número de horas al día, a la semana, al mes o al año inferior al considerado habitual en la actividad normal de la Administración.",
-        "Quienes presten sus servicios durante un número de horas al día, a la semana, al mes o al año inferior en más de un 50 por 100 al considerado habitual en la actividad normal de la Administración. 4",
-        "Quienes presten sus servicios durante un número de días inferior al considerado habitual en la actividad normal de la Administración.",
-        "Quienes presten sus servicios durante un número de meses inferior al considerado habitual en la actividad normal de la Administración."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-15",
-      "text": "¿Cuál de estos órganos NO tiene la condición de órgano superior en materia de función pública en la Comunidad de Castilla y León según el artículo 5 de la Ley 7/2005, de 24 de mayo, de la Función Pública de Castilla y León?",
-      "options": [
-        "Consejo de la Función Pública.",
-        "Consejero competente en materia de función pública.",
-        "Comisión Regional de la Función Pública.",
-        "Junta Superior de la Función Pública."
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-16",
-      "text": "Según el artículo 14 del Decreto 263/1997 de 26 de diciembre, por el que se aprueba el Reglamento interno de organización de los servicios de las Bibliotecas Públicas de titularidad estatal gestionadas por la Comunidad de Castilla y León, el servicio de préstamo interbibliotecario, señale la respuesta correcta:",
-      "options": [
-        "Se regulará por las normas que establezca la Biblioteca de Castilla y León que serán de aplicación para todas las bibliotecas públicas.",
-        "Cada biblioteca pública cabecera de provincia establecerá sus normas.",
-        "No existe este servicio en las bibliotecas de Castilla y León.",
-        "Cada biblioteca se hará cargo de los gastos que se deriven de las peticiones del préstamo Interbibliotecario."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-17",
-      "text": "Según la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León se consideran servicios mínimos de la biblioteca pública:",
-      "options": [
-        "La consulta de publicaciones monográficas y seriadas en sala, la copia de documentos, la información y referencia, el préstamo de libros a domicilio y el préstamo interbibliotecario, tanto para la población adulta como para los niños y jóvenes.",
-        "La consulta de las principales obras de referencia y el préstamo de libros a domicilio.",
-        "La consulta de publicaciones monográficas y seriadas en sala.",
-        "La copia de documentos y el préstamo de libros a domicilio."
-      ],
-      "answer": 1,
-      "theme": "servicios",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-18",
-      "text": "El artículo 7 del Decreto 263/1997 de 26 de diciembre, por el que se aprueba el Reglamento interno de organización de los servicios de las Bibliotecas Públicas de titularidad estatal gestionadas por la Comunidad de Castilla y León, recoge los tipos de carné. ¿Cuál de los siguientes carnés NO se expiden en una biblioteca pública?",
-      "options": [
-        "Carné de investigador.",
-        "Carné infantil-juvenil.",
-        "Carné de adulto.",
-        "Carné de estudiante. 5"
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-19",
-      "text": "La función del ISSN según la norma UNE–ISO 3297:2008 es:",
-      "options": [
-        "Identificar recursos continuados impresos o electrónicos.",
-        "Velar por la calidad de una publicación.",
-        "Identificar revistas científicas y técnicas.",
-        "Identificar el contenido de una publicación."
-      ],
-      "answer": 0,
-      "theme": "documentacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-20",
-      "text": "Una publicación que se edita dos veces al mes se denomina:",
-      "options": [
-        "Bimensual.",
-        "Bimestral.",
-        "Trimestral.",
-        "Irregular."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-21",
-      "text": "Según la IFLA, los niveles de humedad relativa recomendados para los depósitos son:",
-      "options": [
-        "Entre el 45%-65%.",
-        "Entre 55%-65%.",
-        "Entre 65%-75%.",
-        "Menos de 35%."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-22",
-      "text": "El organismo que se encarga de la conservación preventiva y restauración de bienes integrantes del patrimonio histórico español adscritos al Ministerio de Cultura y Deporte se denomina:",
-      "options": [
-        "Instituto del Patrimonio Cultural de España.",
-        "Instituto del Patrimonio Documental y Bibliográfico.",
-        "La Biblioteca Nacional de España.",
-        "Dirección General de Libro y Fomento de la Lectura."
-      ],
-      "answer": 0,
-      "theme": "historia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-23",
-      "text": "¿A qué hacemos referencia cuando hablamos de “selección negativa”?",
-      "options": [
-        "A la denegación de la solicitud de compra de un documento.",
-        "A la parte de las novedades documentales no seleccionadas para su incorporación a la colección.",
-        "A seleccionar material para expurgar.",
-        "A la selección de fondos que genera un déficit económico."
-      ],
-      "answer": 2,
-      "theme": "documentacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-24",
-      "text": "¿Cuál de estos criterios NO es básico a la hora de realizar un expurgo, según las Pautas sobre los servicios de las bibliotecas públicas ?",
-      "options": [
-        "La obsolescencia o pérdida de actualidad de la información.",
-        "Duplicidad.",
-        "El deterioro de los materiales.",
-        "La falta de uso. 6"
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-25",
-      "text": "Según las directrices de IFLA/UNESCO para el desarrollo de las bibliotecas públicas, ¿cuál es la cantidad mínima de obras del punto de servicio menor?",
-      "options": [
-        "1.500 obras.",
-        "2.000 obras.",
-        "2.500 obras.",
-        "3.000 obras."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-26",
-      "text": "¿Qué Decreto regula el Depósito Legal de las publicaciones en línea?",
-      "options": [
-        "Decreto 109/1991, de 20 de noviembre.",
-        "Real Decreto 635/2015, de 10 de julio.",
-        "Real Decreto 23/2011, de 29 de julio.",
-        "Real Orden 23/2020, de 22 de enero."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-27",
-      "text": "¿Qué tipo de documentos se registran en un fichero kardex?",
-      "options": [
-        "Los videojuegos.",
-        "Las revistas.",
-        "Las bases de datos en línea.",
-        "Las donaciones."
-      ],
-      "answer": 1,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-28",
-      "text": "Según el artículo 7 de la Ley 23/2011, de 29 de julio, de depósito legal, sobre quién recae la obligación de solicitar número de Depósito Legal:",
-      "options": [
-        "El autor.",
-        "El editor.",
-        "El autor, el editor, el impresor o el productor indistintamente.",
-        "El impresor, cuando se trate de obras impresas, y el productor cuando se trate de otro tipo de obras."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-29",
-      "text": "En los depósitos, la ordenación más común es:",
-      "options": [
-        "Alfabéticamente.",
-        "Por número currens.",
-        "Sistemáticamente.",
-        "Por materias."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-30",
-      "text": "Señale la respuesta correcta en relación con la RFID (Radio Frequency Identification):",
-      "options": [
-        "Es una norma para la identificación de recursos en línea.",
-        "Facilita la realización de recuentos e inventarios.",
-        "Es un sistema de clasificación para bibliotecas de filosofía.",
-        "Es la norma para la identificación de obras musicales. 7"
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-31",
-      "text": "Si en una biblioteca encontramos un lugar con el cartel “novela fantástica” estamos ante:",
-      "options": [
-        "Una ordenación sistemática.",
-        "Una ordenación alfabética.",
-        "Un centro de interés.",
-        "Una ordenación por colecciones editoriales."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-32",
-      "text": "¿Qué entidad se encarga de la gestión del ISBN en España?",
-      "options": [
-        "El Ministerio de Cultura.",
-        "CEDRO.",
-        "La Federación de Gremios de Editores de España.",
-        "La Biblioteca Nacional de España."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-33",
-      "text": "La mención de serie en formato MARC21 para registros bibliográficos se incluyen en un campo:",
-      "options": [
-        "5XX.",
-        "2XX.",
-        "4XX.",
-        "8XX."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-34",
-      "text": "¿Qué es el ISSN-L?",
-      "options": [
-        "El ISSN para publicaciones en línea.",
-        "El ISSN para publicaciones en línea en acceso abierto.",
-        "Es un ISSN específico que reúne los diferentes soportes en los que se edita una misma publicación seriada.",
-        "El ISSN que consta de 13 cifras, en lugar de 8, para indicar el país y el editor."
-      ],
-      "answer": 2,
-      "theme": "documentacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-35",
-      "text": "En los encabezamientos de materia, los subencabezamientos pueden ser:",
-      "options": [
-        "Topográficos, cronológicos y de forma.",
-        "De materia, topográficos, cronológicos, de forma y de punto de vista.",
-        "De materia, topográficos, cronológicos y de forma.",
-        "Topográficos, cronológicos, de forma y de aspecto."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-36",
-      "text": "La CDU en España está regulada por la norma:",
-      "options": [
-        "UNE 50001:2015.",
-        "ISO 3297:2015.",
-        "ISO 9000:2007.",
-        "UNE 50100:2016. 8"
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-37",
-      "text": "¿Qué es el MOPAC?",
-      "options": [
-        "El acceso a Mi biblioteca desde el catálogo con el número de usuario y contraseña.",
-        "La versión para móviles del tradicional catálogo de la biblioteca.",
-        "El manual de usuario del OPAC.",
-        "Un catálogo especializado de materias."
-      ],
-      "answer": 1,
-      "theme": "bibliografia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-38",
-      "text": "Conforme establece el artículo 7 del Real Decreto 582/1989, de 19 de mayo, por el que se aprueba el Reglamento de Bibliotecas Públicas del Estado y del Sistema Español de Bibliotecas, las Bibliotecas Públicas del Estado deberán realizar un recuento total de sus fondos:",
-      "options": [
-        "Anualmente.",
-        "Al menos una vez cada dos años.",
-        "Al menos dos veces cada año.",
-        "Al menos una vez cada cinco años."
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-39",
-      "text": "La RDA (Resource Description and Access) es el nuevo código de catalogación que ha sustituido a:",
-      "options": [
-        "ISBD.",
-        "AACR2.",
-        "IBERMARC.",
-        "MARC21."
-      ],
-      "answer": 1,
-      "theme": "procesos",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-40",
-      "text": "La Declaración de Alejandría de 2005 versa sobre:",
-      "options": [
-        "Las bibliotecas y la libertad intelectual.",
-        "Las bibliotecas y el desarrollo sostenible.",
-        "La alfabetización informacional y el aprendizaje a lo largo de la vida.",
-        "El acceso universal y equitativo a la información."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-41",
-      "text": "El Sistema Integrado de Gestión Bibliotecaria AbsysNET utilizado en las bibliotecas de Castilla y León tiene integrado:",
-      "options": [
-        "Un módulo de circulación.",
-        "Un módulo de reservas de plazas para actividades culturales.",
-        "Un módulo de préstamo de libros electrónicos.",
-        "Un directorio con las direcciones de correo electrónico del personal de la biblioteca."
-      ],
-      "answer": 0,
-      "theme": "gestion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-42",
-      "text": "Los tipos de préstamo son:",
-      "options": [
-        "Préstamo en depósito, préstamo colectivo y préstamo interbibliotecario.",
-        "Préstamo personal, préstamo a domicilio y préstamo interbibliotecario.",
-        "Préstamo personal, préstamo colectivo y préstamo interbibliotecario.",
-        "Préstamo unitario, préstamo conjunto y préstamo interbibliotecario. 9"
-      ],
-      "answer": 2,
-      "theme": "servicios",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-43",
-      "text": "Según el artículo 19 la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León, ¿el préstamo interbibliotecario es un servicio?",
-      "options": [
-        "Un servicio opcional.",
-        "Un servicio mínimo.",
-        "Un servicio básico.",
-        "Un servicio a demanda."
-      ],
-      "answer": 2,
-      "theme": "servicios",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-45",
-      "text": "¿Las bibliotecas como punto de encuentro y ejes de la vida social de una comunidad, se conocen actualmente cómo?",
-      "options": [
-        "Bibliotecas interdisciplinares.",
-        "Bibliotecas populares.",
-        "Bibliotecas como tercer lugar.",
-        "Bibliotecas integradas."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-47",
-      "text": "La Biblioteca Digital Taurina se enmarca dentro de :",
-      "options": [
-        "Biblioteca Digital Mundial.",
-        "Biblioteca Digital de Castilla y León.",
-        "Biblioteca Digital Iberoamericana.",
-        "Internet Archive."
-      ],
-      "answer": 1,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-48",
-      "text": "¿Son fuentes de información secundarias?:",
-      "options": [
-        "Patentes.",
-        "Bibliografías.",
-        "Bibliografías de bibliografías.",
-        "Traducciones. 10"
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-49",
-      "text": "¿Qué función tiene el modelo de recuperación de información Booleano?",
-      "options": [
-        "Mide la correspondencia entre los elementos de la consulta y los documentos.",
-        "Mide el grado en que divergen los vectores que representan la consulta y los términos del documento.",
-        "Calcula la probabilidad en que el documento responde a la consulta mediante la retroalimentación con el usuario.",
-        "Permite las frecuencias de los términos de búsqueda en los documentos recuperados."
-      ],
-      "answer": 0,
-      "theme": "servicios",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-50",
-      "text": "¿Cuál es el fin de la bibliografía?",
-      "options": [
-        "Buscar, analizar, identificar y clasificar los documentos a fin de elaborar repertorios .",
-        "Localizar documentos por la signatura.",
-        "Analizar la producción científica a través de indicadores.",
-        "Hacer minería de datos."
-      ],
-      "answer": 0,
-      "theme": "bibliografia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-51",
-      "text": "La “Bibliotheca Hispana Nova” es una obra de qué autor:",
-      "options": [
-        "Nicolás Antonio.",
-        "Gabriel Naude.",
-        "Philippe Labbé.",
-        "San Jerónimo."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-53",
-      "text": "¿Qué es Hispana?",
-      "options": [
-        "Es el portal de acceso al patrimonio digital y el agregador nacional de contenidos a Europeana.",
-        "Es la red de Bibliotecas Universitarias que catalogan en DOBIS/LIBIS.",
-        "Es el catálogo colectivo del Campus Universitario de Salamanca.",
-        "Es una bibliografía nacional."
-      ],
-      "answer": 0,
-      "theme": "bibliografia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-54",
-      "text": "Señale la respuesta correcta, ¿a qué hace referencia el término 24x7?",
-      "options": [
-        "Un protocolo de intercambio de información.",
-        "La disponibilidad de los servicios bibliotecarios en internet. 11",
-        "Un código de normalización.",
-        "Una base de datos especializada de matemáticas."
-      ],
-      "answer": 1,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-55",
-      "text": "El OPAC Social alude a:",
-      "options": [
-        "La parte del OPAC que recupera documentos de ciencias sociales.",
-        "Al OPAC que implementa funcionalidades de software social.",
-        "Al OPAC que accede a documentos sobre redes sociales.",
-        "Al módulo de usuarios del SIGB de una biblioteca."
-      ],
-      "answer": 1,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-56",
-      "text": "Las herramientas de descubrimiento permiten:",
-      "options": [
-        "Nuevas funcionalidades de Internet.",
-        "Descubrir nuevas herramientas de descripción.",
-        "Una búsqueda integrada en los diferentes recursos de una biblioteca.",
-        "Gestionar las redes sociales de las bibliotecas."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-57",
-      "text": "TESEO es una base de datos especializada en:",
-      "options": [
-        "Ciencias sociales y Humanidades.",
-        "Arte y Literatura.",
-        "Tesis doctorales.",
-        "Mitología y Religión."
-      ],
-      "answer": 2,
-      "theme": "historia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-58",
-      "text": "El Programa NueB nació para:",
-      "options": [
-        "Promover la alfabetización universal, incluyendo la alfabetización y las habilidades digitales mediáticas e informacionales, con el apoyo de personal especializado.",
-        "Superar las dificultades en el acceso a la información y ayudar al gobierno, la sociedad civil y la empresa a comprender mejor las necesidades locales en materia de información.",
-        "Impulsar y coordinar las actividades de las bibliotecas provinciales de la Comunidad de Castilla y León.",
-        "Promover la inclusión digital a través del acceso a las TIC."
-      ],
-      "answer": 2,
-      "theme": "servicios",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-59",
-      "text": "Las bibliotecas y el acceso a la información contribuyen al logro de todos los Objetivos de Desarrollo Sostenible (ODS) a través de varias acciones, ¿cuál de las siguientes NO está incluida entre ellas?",
-      "options": [
-        "Implementar una red de sitios de suministro de programas y servicios gubernamentales.",
-        "Definir un nuevo perfil profesional del bibliotecario.",
-        "Actuar como el centro de la comunidad académica y de investigación.",
-        "Preservar y proporcionar el acceso a la cultura y el patrimonio del mundo. 12"
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-60",
-      "text": "El Club de Lectura Virtual de las Bibliotecas de Castilla y León propone una nueva lectura cada:",
-      "options": [
-        "Quince días.",
-        "Mes.",
-        "Dos meses.",
-        "Trimestre."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-61",
-      "text": "¿Qué es TABI?",
-      "options": [
-        "El acrónimo por el que se reconoce e identifica a la Red de Teatros de la Red de Bibliotecas de Castilla y León.",
-        "Una aplicación informática para solicitar la Tarjeta de usuario del Sistema de Bibliotecas de Castilla y León.",
-        "La app de las Bibliotecas de Castilla y León.",
-        "Una colección de la Biblioteca Digital de Castilla y León."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-65",
-      "text": "Indique el periodo temporal que abarca el II Plan de Lectura de la Comunidad de Castilla y León:",
-      "options": [
-        "2016-2020.",
-        "2006-2010. 13",
-        "2000-2004.",
-        "2022-2026."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-66",
-      "text": "¿Qué es Makerspace?, señale la respuesta correcta:",
-      "options": [
-        "Un espacio dotado con tecnología y herramientas para la creación de ideas o proyectos individuales o en equipo.",
-        "Una biblioteca dentro de un supermercado.",
-        "Un espacio destinado a depósito intermedio de documentos.",
-        "Un centro de interés sobre alimentación."
-      ],
-      "answer": 0,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-67",
-      "text": "¿A quién se dirige la Lectura Fácil?",
-      "options": [
-        "A todas las personas, en especial a aquellas que tienen dificultades lectoras transitorias o permanentes.",
-        "Solamente a personas con diversidad funcional.",
-        "Exclusivamente son textos dirigidos a personas mayores.",
-        "Son textos especialmente diseñados para invidentes."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-68",
-      "text": "La digitalización de las obras que integran la Biblioteca Digital de Castilla y León se hace con cargo al presupuesto de:",
-      "options": [
-        "La Consejería de Cultura y Turismo.",
-        "La Consejería de Cultura y Turismo con la colaboración del Ministerio de Cultura.",
-        "La Consejería de Cultura y Turismo con la colaboración del Ministerio de Cultura y las entidades municipales de donde proceden los fondos.",
-        "La Consejería de Cultura y Turismo con la colaboración las entidades municipales de donde proceden los fondos."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-69",
-      "text": "La Biblioteca Virtual de Prensa Histórica comprende:",
-      "options": [
-        "La colección de prensa histórica que alberga la Biblioteca Nacional.",
-        "La hemeroteca digital de bibliotecas, archivos y museos públicos.",
-        "La hemeroteca digital de bibliotecas, archivos y museos públicos y privados.",
-        "Las colecciones de prensa histórica de las universidades públicas españolas."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-70",
-      "text": "¿Cuál es el único bestiario escrito en castellano que se conserva en la actualidad?",
-      "options": [
-        "El Libro de los seres imaginarios.",
-        "El Bestiario de Aberdeen.",
-        "El Bestiario de Juan de Austria.",
-        "Physiologus. 14"
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-71",
-      "text": "Las primeras bibliotecas en la época mesopotámica se ubicaban:",
-      "options": [
-        "En edificios propios.",
-        "Dentro de los templos.",
-        "En lugares céntricos.",
-        "En ciudades comerciales."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-72",
-      "text": "¿Por qué motivo es significativo para la Biblioteca Nacional de España el año 1712?",
-      "options": [
-        "Comienza a llamarse Biblioteca Nacional.",
-        "En ese año se abrió al público.",
-        "Fue el año de su fundación.",
-        "Pasó a depender del Ministerio de la Gobernación."
-      ],
-      "answer": 1,
-      "theme": "tipologia",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-73",
-      "text": "El modelo “Pick and choose” elegido por algunas bibliotecas para la gestión de su colección de libros electrónicos, ¿con qué parte del proceso técnico está relacionado?",
-      "options": [
-        "Canje.",
-        "Selección y adquisición.",
-        "Catalogación.",
-        "Análisis documental."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-74",
-      "text": "¿Cuál de las siguientes plataformas NO se utiliza para la lectura de libros electrónicos?",
-      "options": [
-        "Bubok.",
-        "Nubico.",
-        "Skoobe.",
-        "24symbol."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-75",
-      "text": "¿Cuál de los siguientes formatos de archivos para la lectura de libros electrónicos NO fue específicamente diseñado para ellos?",
-      "options": [
-        "EPUB.",
-        "MOBI.",
-        "CBR.",
-        "PDF."
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-76",
-      "text": "Según el artículo 22 del Real Decreto 582/1989, de 19 de mayo, por el que se aprueba el Reglamento de Bibliotecas Públicas del Estado y del Sistema Español de Bibliotecas, ¿qué bibliotecas NO están integradas en el Sistema Español de Bibliotecas?",
-      "options": [
-        "Las Bibliotecas escolares.",
-        "Las Bibliotecas de las Universidades públicas. 15",
-        "Las Bibliotecas Públicas del Estado.",
-        "Las Bibliotecas de las Reales Academias."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-77",
-      "text": "¿Qué órgano ha sido el encargado de elaborar el “III Plan Estratégico 2019-2023 Bibliotecas en Igualdad”?",
-      "options": [
-        "La Biblioteca Nacional.",
-        "El Consejo de Cooperación Bibliotecaria.",
-        "Las Bibliotecas Públicas del Estado.",
-        "El Observatorio de la Lectura y el Libro."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-78",
-      "text": "De acuerdo con el artículo 18 de la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León, se impulsará la creación de sistemas urbanos de bibliotecas en los municipios:",
-      "options": [
-        "De más de 10.000 habitantes.",
-        "De más de 20.000 habitantes.",
-        "De más de 30.000 habitantes.",
-        "De más de 50.000 habitantes."
-      ],
-      "answer": 1,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 1
-    },
-    {
-      "id": "examen1-79",
-      "text": "Según la Carta de Servicios al Ciudadano de la Biblioteca de Castilla y León, ésta tiene el compromiso anual de renovar la colección, en qué porcentaje:",
-      "options": [
-        "Un 5%.",
-        "Un 7%.",
-        "Un 8%.",
-        "Un 10%."
-      ],
-      "answer": 0,
-      "theme": "documentacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-80",
-      "text": "Según el artículo 11 del Real Decreto 56/1991, de 21 de marzo, por el que se establecen la estructura y funciones de la Biblioteca de Castilla y León, la sección técnica de la Biblioteca de Castilla y León encargada de la formación de una biblioteca profesional es:",
-      "options": [
-        "El Centro Bibliográfico de Castilla y León.",
-        "La Hemeroteca de Castilla y León.",
-        "La Biblioteca Pública del Estado de Valladolid.",
-        "La Biblioteca de Estudios Castellano-Leoneses."
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-81",
-      "text": "Señale la respuesta incorrecta:",
-      "options": [
-        "La Constitución Española consta de un preámbulo, una parte dogmática y una parte orgánica.",
-        "La Constitución Española consta de ciento sesenta y nueve artículos, repartidos en un título preliminar y otros diez títulos más.",
-        "La Constitución Española tiene cuatro disposiciones adicionales.",
-        "La Constitución Española tiene una disposición derogatoria y dos disposiciones finales. 16"
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-82",
-      "text": "Según establece el artículo 70 del Estatuto de Autonomía de Castilla y León, los museos, bibliotecas y archivos son competencia:",
-      "options": [
-        "Exclusiva del Estado.",
-        "Exclusiva de la Comunidad de Castilla y León.",
-        "Exclusiva de la Comunidad de Castilla y León siempre que no sean de titularidad estatal.",
-        "Desarrollo normativo y ejecución de la Comunidad de Castilla y León en el marco de la legislación básica del Estado."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-83",
-      "text": "¿Qué es DigComp?, señale la respuesta correcta:",
-      "options": [
-        "Un marco detallado para el desarrollo de la competencia digital de los ciudadanos en Europa.",
-        "Un protocolo de colaboración para el intercambio de información.",
-        "Una lista de distribución de la Biblioteca de la Facultad de Traducción y Documentación de la Universidad de Salamanca.",
-        "Un sistema abierto de información de revistas publicadas en castellano, documental, subscripciones, búsqueda de documentos, alertas, catálogos, tesis…"
-      ],
-      "answer": 0,
-      "theme": "tecnologias",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-84",
-      "text": "¿Cuál de las siguientes licencias Creative Commons, NO existe?",
-      "options": [
-        "CC BY.",
-        "CC BY-NC-ND.",
-        "CC BY-ND-SA.",
-        "CC BY-SA."
-      ],
-      "answer": 2,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 2
-    },
-    {
-      "id": "examen1-85",
-      "text": "¿Qué significan las siglas OAI-PMH?",
-      "options": [
-        "Open access initiative – Protocol for Method Harvesting.",
-        "Open access initiative – Protocol for Metadata Harvesting.",
-        "Open archives initiative – Protocol for Method Harvesting.",
-        "Open archives initiative – Protocol for Metadata Harvesting."
-      ],
-      "answer": 3,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 3
-    },
-    {
-      "id": "examen1-86",
-      "text": "¿A qué se denomina encuadernación plusgémina ?",
-      "options": [
-        "Al tipo de encuadernación que consiste en reunir en un volumen dos o más obras.",
-        "A la que presenta el libro sin cortar y el lomo y las tapas cubiertos de papel impreso.",
-        "La que se distingue por la delicadeza de su acabado y la riqueza y lujo de los materiales en ella empleados.",
-        "La primera de un libro que, tratándose de ejemplares antiguos, dan valor a éste. 17"
-      ],
-      "answer": 0,
-      "theme": "legislacion",
-      "difficulty": "normal",
-      "source": "examen1-2022",
-      "answerIndex": 0
-    },
-    {
-      "id": "examen1-1",
+      "id": "examen1-2022-1",
       "text": "¿En qué artículo de la Constitución Española está regulado el acceso a la cultura a la que todos tienen derecho?, señale la respuesta correcta:",
       "options": [
         "Artículo 43.",
         "Artículo 44.",
         "Artículo 45.",
-        "Artículo 46."
+        "Artículo"
       ],
       "answerIndex": 1,
-      "answer": 1,
-      "theme": "legislacion",
+      "category": "legislacion",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-2",
+      "id": "examen1-2022-2",
       "text": "Señale la respuesta incorrecta en relación con el Defensor del Pueblo regulado en el artículo 54 de la Constitución Española:",
       "options": [
         "Una ley orgánica regulará la institución del Defensor del Pueblo.",
@@ -1210,13 +28,586 @@
         "Puede supervisar la actividad de la Administración."
       ],
       "answerIndex": 2,
-      "answer": 2,
-      "theme": "legislacion",
+      "category": "legislacion",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-44",
+      "id": "examen1-2022-3",
+      "text": "¿Cómo se define la provincia según el artículo 141 de la Constitución Española?, señale la respuesta correcta:",
+      "options": [
+        "Entidad local.",
+        "Corporación local.",
+        "Organización territorial.",
+        "División territorial."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-4",
+      "text": "El Estatuto de Autonomía de Castilla y León se integra dentro del ordenamiento jurídico del Estado Español con rango de:",
+      "options": [
+        "Ley Ordinaria.",
+        "Ley Básica Estatutaria.",
+        "Ley Orgánica.",
+        "Ley Autonómica."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-5",
+      "text": "¿Cuál de los siguientes elementos NO es símbolo de la Comunidad de Castilla y León, conforme al artículo 6 del Estatuto de Autonomía de Castilla y León?",
+      "options": [
+        "El castellano.",
+        "El blasón.",
+        "La bandera.",
+        "El himno."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-6",
+      "text": "Según el artículo 15 de la Ley 3/2001, 3 de julio, del Gobierno y de la Administración de la Comunidad de Castilla y León, la Junta de Castilla y León se compone:",
+      "options": [
+        "Del Presidente, Vicepresidente o Vicepresidentes y de un máximo de nueve consejeros.",
+        "Del Presidente, Vicepresidente, consejeros y viceconsejeros. 2",
+        "Del Presidente, Vicepresidente o Vicepresidentes, en su caso, y un máximo de diez consejeros.",
+        "Del Presidente, Vicepresidente o Vicepresidentes, en su caso, y un máximo de nueve consejeros."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-7",
+      "text": "¿Cuál de las siguientes instituciones NO es institución propia de la Comunidad de Castilla y León, conforme establece artículo 19 del Estatuto de Autonomía de Castilla y León?",
+      "options": [
+        "El Procurador del Común.",
+        "El Consejo Económico y Social.",
+        "El Consejo Consultivo.",
+        "El Presidente de la Junta de Castilla y León."
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-8",
+      "text": "Conforme al artículo 21.2 del Estatuto de Autonomía, la circunscripción electoral es la provincia, asignándose a cada una un número mínimo de:",
+      "options": [
+        "Dos procuradores.",
+        "Tres procuradores.",
+        "Cuatro procuradores.",
+        "No hay un número mínimo, el número de procuradores está determinado por la población total de la provincia."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-9",
+      "text": "¿A qué órgano se atribuye la coordinación y gestión de las competencias de la Administración General de la Comunidad en cada provincia, según el artículo 41 de la Ley 3/2001, de 3 de julio, del Gobierno y de la Administración de la Comunidad de Castilla y León?, señale la respuesta correcta:",
+      "options": [
+        "Las Direcciones Provinciales.",
+        "Los Servicios Territoriales.",
+        "Las Delegaciones Territoriales.",
+        "Las Diputaciones Provinciales."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-10",
+      "text": "Se entiende por violencia de género de acuerdo con el artículo 2 de la Ley 13/2010, de 9 de diciembre, contra la violencia de género en Castilla y León :",
+      "options": [
+        "Cualquier acto de violencia hacia las mujeres que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico, siempre que se produzca en la vida privada.",
+        "Cualquier acto de violencia hacia las mujeres que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico, tanto si se produce en la vida pública como privada. 3",
+        "Cualquier acto de violencia hacia las mujeres o los hombres que se ejerza por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico.",
+        "Cualquier acto de violencia hacia las mujeres mayores de edad que se ejerce contra ellas por el hecho de serlo, y que tenga o pueda tener como resultado un daño o sufrimiento físico, sexual o psicológico."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-11",
+      "text": "Según el artículo 8 del Texto Refundido de la Ley del Estatuto Básico del Empleado Público, NO es una clase de empleado público, señale la respuesta correcta :",
+      "options": [
+        "El funcionario de carrera.",
+        "El personal laboral.",
+        "El funcionario interino.",
+        "El funcionario eventual."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-12",
+      "text": "La reserva de vacantes de personal laboral de la Administración General de la Comunidad de Castilla y León a las personas con discapacidad en los procesos selectivos de personal de nuevo ingreso será como mínimo, según el artículo 25 del Convenio Colectivo para el personal laboral de la Administración General de la Comunidad de Castilla y León y Organismos Autónomos:",
+      "options": [
+        "5 por ciento.",
+        "10 por ciento.",
+        "15 por ciento.",
+        "El que permitan las circunstancias de las plazas vacantes."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-13",
+      "text": "Son órganos específicos de representación de los funcionarios, según el artículo 39 del Texto Refundido de la Ley del Estatuto Básico del Empleado Público:",
+      "options": [
+        "Sindicatos y Juntas de Personal.",
+        "Delegados de personal y secciones sindicales.",
+        "Delegados de personal y Juntas de Personal.",
+        "Funcionarios liberados y Juntas de Personal."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-14",
+      "text": "Tendrán la consideración de trabajadores fijos discontinuos, según el artículo 105 del Convenio Colectivo para el personal laboral de la Administración General de la Comunidad de Castilla y León y Organismos Autónomos :",
+      "options": [
+        "Quienes presten sus servicios durante un número de horas al día, a la semana, al mes o al año inferior al considerado habitual en la actividad normal de la Administración.",
+        "Quienes presten sus servicios durante un número de horas al día, a la semana, al mes o al año inferior en más de un 50 por 100 al considerado habitual en la actividad normal de la Administración. 4",
+        "Quienes presten sus servicios durante un número de días inferior al considerado habitual en la actividad normal de la Administración.",
+        "Quienes presten sus servicios durante un número de meses inferior al considerado habitual en la actividad normal de la Administración."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-15",
+      "text": "¿Cuál de estos órganos NO tiene la condición de órgano superior en materia de función pública en la Comunidad de Castilla y León según el artículo 5 de la Ley 7/2005, de 24 de mayo, de la Función Pública de Castilla y León?",
+      "options": [
+        "Consejo de la Función Pública.",
+        "Consejero competente en materia de función pública.",
+        "Comisión Regional de la Función Pública.",
+        "Junta Superior de la Función Pública."
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-16",
+      "text": "Según el artículo 14 del Decreto 263/1997 de 26 de diciembre, por el que se aprueba el Reglamento interno de organización de los servicios de las Bibliotecas Públicas de titularidad estatal gestionadas por la Comunidad de Castilla y León, el servicio de préstamo interbibliotecario, señale la respuesta correcta:",
+      "options": [
+        "Se regulará por las normas que establezca la Biblioteca de Castilla y León que serán de aplicación para todas las bibliotecas públicas.",
+        "Cada biblioteca pública cabecera de provincia establecerá sus normas.",
+        "No existe este servicio en las bibliotecas de Castilla y León.",
+        "Cada biblioteca se hará cargo de los gastos que se deriven de las peticiones del préstamo Interbibliotecario."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-17",
+      "text": "Según la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León se consideran servicios mínimos de la biblioteca pública:",
+      "options": [
+        "La consulta de publicaciones monográficas y seriadas en sala, la copia de documentos, la información y referencia, el préstamo de libros a domicilio y el préstamo interbibliotecario, tanto para la población adulta como para los niños y jóvenes.",
+        "La consulta de las principales obras de referencia y el préstamo de libros a domicilio.",
+        "La consulta de publicaciones monográficas y seriadas en sala.",
+        "La copia de documentos y el préstamo de libros a domicilio."
+      ],
+      "answerIndex": 1,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-18",
+      "text": "El artículo 7 del Decreto 263/1997 de 26 de diciembre, por el que se aprueba el Reglamento interno de organización de los servicios de las Bibliotecas Públicas de titularidad estatal gestionadas por la Comunidad de Castilla y León, recoge los tipos de carné. ¿Cuál de los siguientes carnés NO se expiden en una biblioteca pública?",
+      "options": [
+        "Carné de investigador.",
+        "Carné infantil-juvenil.",
+        "Carné de adulto.",
+        "Carné de estudiante. 5"
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-19",
+      "text": "La función del ISSN según la norma UNE–ISO 3297:2008 es:",
+      "options": [
+        "Identificar recursos continuados impresos o electrónicos.",
+        "Velar por la calidad de una publicación.",
+        "Identificar revistas científicas y técnicas.",
+        "Identificar el contenido de una publicación."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-20",
+      "text": "Una publicación que se edita dos veces al mes se denomina:",
+      "options": [
+        "Bimensual.",
+        "Bimestral.",
+        "Trimestral.",
+        "Irregular."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-21",
+      "text": "Según la IFLA, los niveles de humedad relativa recomendados para los depósitos son:",
+      "options": [
+        "Entre el 45%-65%.",
+        "Entre 55%-65%.",
+        "Entre 65%-75%.",
+        "Menos de 35%."
+      ],
+      "answerIndex": 0,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-22",
+      "text": "El organismo que se encarga de la conservación preventiva y restauración de bienes integrantes del patrimonio histórico español adscritos al Ministerio de Cultura y Deporte se denomina:",
+      "options": [
+        "Instituto del Patrimonio Cultural de España.",
+        "Instituto del Patrimonio Documental y Bibliográfico.",
+        "La Biblioteca Nacional de España.",
+        "Dirección General de Libro y Fomento de la Lectura."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-23",
+      "text": "¿A qué hacemos referencia cuando hablamos de “selección negativa”?",
+      "options": [
+        "A la denegación de la solicitud de compra de un documento.",
+        "A la parte de las novedades documentales no seleccionadas para su incorporación a la colección.",
+        "A seleccionar material para expurgar.",
+        "A la selección de fondos que genera un déficit económico."
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-24",
+      "text": "¿Cuál de estos criterios NO es básico a la hora de realizar un expurgo, según las Pautas sobre los servicios de las bibliotecas públicas ?",
+      "options": [
+        "La obsolescencia o pérdida de actualidad de la información.",
+        "Duplicidad.",
+        "El deterioro de los materiales.",
+        "La falta de uso. 6"
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-25",
+      "text": "Según las directrices de IFLA/UNESCO para el desarrollo de las bibliotecas públicas, ¿cuál es la cantidad mínima de obras del punto de servicio menor?",
+      "options": [
+        "1.500 obras.",
+        "2.000 obras.",
+        "2.500 obras.",
+        "3.000 obras."
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-26",
+      "text": "¿Qué Decreto regula el Depósito Legal de las publicaciones en línea?",
+      "options": [
+        "Decreto 109/1991, de 20 de noviembre.",
+        "Real Decreto 635/2015, de 10 de julio.",
+        "Real Decreto 23/2011, de 29 de julio.",
+        "Real Orden 23/2020, de 22 de enero."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-27",
+      "text": "¿Qué tipo de documentos se registran en un fichero kardex?",
+      "options": [
+        "Los videojuegos.",
+        "Las revistas.",
+        "Las bases de datos en línea.",
+        "Las donaciones."
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-28",
+      "text": "Según el artículo 7 de la Ley 23/2011, de 29 de julio, de depósito legal, sobre quién recae la obligación de solicitar número de Depósito Legal:",
+      "options": [
+        "El autor.",
+        "El editor.",
+        "El autor, el editor, el impresor o el productor indistintamente.",
+        "El impresor, cuando se trate de obras impresas, y el productor cuando se trate de otro tipo de obras."
+      ],
+      "answerIndex": 1,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-29",
+      "text": "En los depósitos, la ordenación más común es:",
+      "options": [
+        "Alfabéticamente.",
+        "Por número currens.",
+        "Sistemáticamente.",
+        "Por materias."
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-30",
+      "text": "Señale la respuesta correcta en relación con la RFID (Radio Frequency Identification):",
+      "options": [
+        "Es una norma para la identificación de recursos en línea.",
+        "Facilita la realización de recuentos e inventarios.",
+        "Es un sistema de clasificación para bibliotecas de filosofía.",
+        "Es la norma para la identificación de obras musicales. 7"
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-31",
+      "text": "Si en una biblioteca encontramos un lugar con el cartel “novela fantástica” estamos ante:",
+      "options": [
+        "Una ordenación sistemática.",
+        "Una ordenación alfabética.",
+        "Un centro de interés.",
+        "Una ordenación por colecciones editoriales."
+      ],
+      "answerIndex": 2,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-32",
+      "text": "¿Qué entidad se encarga de la gestión del ISBN en España?",
+      "options": [
+        "El Ministerio de Cultura.",
+        "CEDRO.",
+        "La Federación de Gremios de Editores de España.",
+        "La Biblioteca Nacional de España."
+      ],
+      "answerIndex": 2,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-33",
+      "text": "La mención de serie en formato MARC21 para registros bibliográficos se incluyen en un campo:",
+      "options": [
+        "5XX.",
+        "2XX.",
+        "4XX.",
+        "8XX."
+      ],
+      "answerIndex": 2,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-34",
+      "text": "¿Qué es el ISSN-L?",
+      "options": [
+        "El ISSN para publicaciones en línea.",
+        "El ISSN para publicaciones en línea en acceso abierto.",
+        "Es un ISSN específico que reúne los diferentes soportes en los que se edita una misma publicación seriada.",
+        "El ISSN que consta de 13 cifras, en lugar de 8, para indicar el país y el editor."
+      ],
+      "answerIndex": 2,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-35",
+      "text": "En los encabezamientos de materia, los subencabezamientos pueden ser:",
+      "options": [
+        "Topográficos, cronológicos y de forma.",
+        "De materia, topográficos, cronológicos, de forma y de punto de vista.",
+        "De materia, topográficos, cronológicos y de forma.",
+        "Topográficos, cronológicos, de forma y de aspecto."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-36",
+      "text": "La CDU en España está regulada por la norma:",
+      "options": [
+        "UNE 50001:2015.",
+        "ISO 3297:2015.",
+        "ISO 9000:2007.",
+        "UNE 50100:2016. 8"
+      ],
+      "answerIndex": 0,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-37",
+      "text": "¿Qué es el MOPAC?",
+      "options": [
+        "El acceso a Mi biblioteca desde el catálogo con el número de usuario y contraseña.",
+        "La versión para móviles del tradicional catálogo de la biblioteca.",
+        "El manual de usuario del OPAC.",
+        "Un catálogo especializado de materias."
+      ],
+      "answerIndex": 1,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-38",
+      "text": "Conforme establece el artículo 7 del Real Decreto 582/1989, de 19 de mayo, por el que se aprueba el Reglamento de Bibliotecas Públicas del Estado y del Sistema Español de Bibliotecas, las Bibliotecas Públicas del Estado deberán realizar un recuento total de sus fondos:",
+      "options": [
+        "Anualmente.",
+        "Al menos una vez cada dos años.",
+        "Al menos dos veces cada año.",
+        "Al menos una vez cada cinco años."
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-39",
+      "text": "La RDA (Resource Description and Access) es el nuevo código de catalogación que ha sustituido a:",
+      "options": [
+        "ISBD.",
+        "AACR2.",
+        "IBERMARC.",
+        "MARC21."
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-40",
+      "text": "La Declaración de Alejandría de 2005 versa sobre:",
+      "options": [
+        "Las bibliotecas y la libertad intelectual.",
+        "Las bibliotecas y el desarrollo sostenible.",
+        "La alfabetización informacional y el aprendizaje a lo largo de la vida.",
+        "El acceso universal y equitativo a la información."
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-41",
+      "text": "El Sistema Integrado de Gestión Bibliotecaria AbsysNET utilizado en las bibliotecas de Castilla y León tiene integrado:",
+      "options": [
+        "Un módulo de circulación.",
+        "Un módulo de reservas de plazas para actividades culturales.",
+        "Un módulo de préstamo de libros electrónicos.",
+        "Un directorio con las direcciones de correo electrónico del personal de la biblioteca."
+      ],
+      "answerIndex": 0,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-42",
+      "text": "Los tipos de préstamo son:",
+      "options": [
+        "Préstamo en depósito, préstamo colectivo y préstamo interbibliotecario.",
+        "Préstamo personal, préstamo a domicilio y préstamo interbibliotecario.",
+        "Préstamo personal, préstamo colectivo y préstamo interbibliotecario.",
+        "Préstamo unitario, préstamo conjunto y préstamo interbibliotecario. 9"
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-43",
+      "text": "Según el artículo 19 la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León, ¿el préstamo interbibliotecario es un servicio?",
+      "options": [
+        "Un servicio opcional.",
+        "Un servicio mínimo.",
+        "Un servicio básico.",
+        "Un servicio a demanda."
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-44",
       "text": "¿Cuál de las siguientes normas ISO regula el préstamo interbibliotecario?",
       "options": [
         "La ISO 10160.",
@@ -1225,13 +616,110 @@
         "Ninguna de ellas."
       ],
       "answerIndex": 0,
-      "answer": 0,
-      "theme": "servicios",
+      "category": "servicios",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-52",
+      "id": "examen1-2022-45",
+      "text": "¿Las bibliotecas como punto de encuentro y ejes de la vida social de una comunidad, se conocen actualmente cómo?",
+      "options": [
+        "Bibliotecas interdisciplinares.",
+        "Bibliotecas populares.",
+        "Bibliotecas como tercer lugar.",
+        "Bibliotecas integradas."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-46",
+      "text": "¿En la Red Automatizada de Bibliotecas de Castilla y León (RABEL) como norma general NO se podrán reservar?",
+      "options": [
+        "Los documentos no prestados.",
+        "Los documentos prestados.",
+        "Los documentos reservados.",
+        "Los documentos prestados y reservados."
+      ],
+      "answerIndex": 0,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-47",
+      "text": "La Biblioteca Digital Taurina se enmarca dentro de :",
+      "options": [
+        "Biblioteca Digital Mundial.",
+        "Biblioteca Digital de Castilla y León.",
+        "Biblioteca Digital Iberoamericana.",
+        "Internet Archive."
+      ],
+      "answerIndex": 1,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-48",
+      "text": "¿Son fuentes de información secundarias?:",
+      "options": [
+        "Patentes.",
+        "Bibliografías.",
+        "Bibliografías de bibliografías.",
+        "Traducciones. 10"
+      ],
+      "answerIndex": 1,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-49",
+      "text": "¿Qué función tiene el modelo de recuperación de información Booleano?",
+      "options": [
+        "Mide la correspondencia entre los elementos de la consulta y los documentos.",
+        "Mide el grado en que divergen los vectores que representan la consulta y los términos del documento.",
+        "Calcula la probabilidad en que el documento responde a la consulta mediante la retroalimentación con el usuario.",
+        "Permite las frecuencias de los términos de búsqueda en los documentos recuperados."
+      ],
+      "answerIndex": 0,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-50",
+      "text": "¿Cuál es el fin de la bibliografía?",
+      "options": [
+        "Buscar, analizar, identificar y clasificar los documentos a fin de elaborar repertorios .",
+        "Localizar documentos por la signatura.",
+        "Analizar la producción científica a través de indicadores.",
+        "Hacer minería de datos."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-51",
+      "text": "La “Bibliotheca Hispana Nova” es una obra de qué autor:",
+      "options": [
+        "Nicolás Antonio.",
+        "Gabriel Naude.",
+        "Philippe Labbé.",
+        "San Jerónimo."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-52",
       "text": "En relación con el catálogo colectivo del Patrimonio Bibliográfico Español (CCPB), señale la respuesta correcta:",
       "options": [
         "Describe distintas ediciones de obras impresas entre los siglos XV y XX (hasta 1958) existentes en bibliotecas españolas.",
@@ -1240,13 +728,138 @@
         "Es elaborado exclusivamente por la Biblioteca Nacional."
       ],
       "answerIndex": 0,
-      "answer": 0,
-      "theme": "bibliografia",
+      "category": "bibliografia",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-63",
+      "id": "examen1-2022-53",
+      "text": "¿Qué es Hispana?",
+      "options": [
+        "Es el portal de acceso al patrimonio digital y el agregador nacional de contenidos a Europeana.",
+        "Es la red de Bibliotecas Universitarias que catalogan en DOBIS/LIBIS.",
+        "Es el catálogo colectivo del Campus Universitario de Salamanca.",
+        "Es una bibliografía nacional."
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-54",
+      "text": "Señale la respuesta correcta, ¿a qué hace referencia el término 24x7?",
+      "options": [
+        "Un protocolo de intercambio de información.",
+        "La disponibilidad de los servicios bibliotecarios en internet. 11",
+        "Un código de normalización.",
+        "Una base de datos especializada de matemáticas."
+      ],
+      "answerIndex": 1,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-55",
+      "text": "El OPAC Social alude a:",
+      "options": [
+        "La parte del OPAC que recupera documentos de ciencias sociales.",
+        "Al OPAC que implementa funcionalidades de software social.",
+        "Al OPAC que accede a documentos sobre redes sociales.",
+        "Al módulo de usuarios del SIGB de una biblioteca."
+      ],
+      "answerIndex": 1,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-56",
+      "text": "Las herramientas de descubrimiento permiten:",
+      "options": [
+        "Nuevas funcionalidades de Internet.",
+        "Descubrir nuevas herramientas de descripción.",
+        "Una búsqueda integrada en los diferentes recursos de una biblioteca.",
+        "Gestionar las redes sociales de las bibliotecas."
+      ],
+      "answerIndex": 2,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-57",
+      "text": "TESEO es una base de datos especializada en:",
+      "options": [
+        "Ciencias sociales y Humanidades.",
+        "Arte y Literatura.",
+        "Tesis doctorales.",
+        "Mitología y Religión."
+      ],
+      "answerIndex": 2,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-58",
+      "text": "El Programa NueB nació para:",
+      "options": [
+        "Promover la alfabetización universal, incluyendo la alfabetización y las habilidades digitales mediáticas e informacionales, con el apoyo de personal especializado.",
+        "Superar las dificultades en el acceso a la información y ayudar al gobierno, la sociedad civil y la empresa a comprender mejor las necesidades locales en materia de información.",
+        "Impulsar y coordinar las actividades de las bibliotecas provinciales de la Comunidad de Castilla y León.",
+        "Promover la inclusión digital a través del acceso a las TIC."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-59",
+      "text": "Las bibliotecas y el acceso a la información contribuyen al logro de todos los Objetivos de Desarrollo Sostenible (ODS) a través de varias acciones, ¿cuál de las siguientes NO está incluida entre ellas?",
+      "options": [
+        "Implementar una red de sitios de suministro de programas y servicios gubernamentales.",
+        "Definir un nuevo perfil profesional del bibliotecario.",
+        "Actuar como el centro de la comunidad académica y de investigación.",
+        "Preservar y proporcionar el acceso a la cultura y el patrimonio del mundo. 12"
+      ],
+      "answerIndex": 1,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-60",
+      "text": "El Club de Lectura Virtual de las Bibliotecas de Castilla y León propone una nueva lectura cada:",
+      "options": [
+        "Quince días.",
+        "Mes.",
+        "Dos meses.",
+        "Trimestre."
+      ],
+      "answerIndex": 1,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-61",
+      "text": "¿Qué es TABI?",
+      "options": [
+        "El acrónimo por el que se reconoce e identifica a la Red de Teatros de la Red de Bibliotecas de Castilla y León.",
+        "Una aplicación informática para solicitar la Tarjeta de usuario del Sistema de Bibliotecas de Castilla y León.",
+        "La app de las Bibliotecas de Castilla y León.",
+        "Una colección de la Biblioteca Digital de Castilla y León."
+      ],
+      "answerIndex": 1,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-63",
       "text": "¿En qué año se creó la Red Automatizada de Bibliotecas de Castilla y León (RABEL)?, señale la respuesta correcta:",
       "options": [
         "2009.",
@@ -1255,13 +868,12 @@
         "2012."
       ],
       "answerIndex": 0,
-      "answer": 0,
-      "theme": "tecnologias",
+      "category": "tecnologias",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-64",
+      "id": "examen1-2022-64",
       "text": "¿Qué es KAMISHIBAI?",
       "options": [
         "Una forma de contar historias.",
@@ -1270,28 +882,334 @@
         "Poema épico chino."
       ],
       "answerIndex": 0,
-      "answer": 0,
-      "theme": "servicios",
+      "category": "legislacion",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-87",
+      "id": "examen1-2022-65",
+      "text": "Indique el periodo temporal que abarca el II Plan de Lectura de la Comunidad de Castilla y León:",
+      "options": [
+        "2016-2020.",
+        "2006-2010. 13",
+        "2000-2004.",
+        "2022-2026."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-66",
+      "text": "¿Qué es Makerspace?, señale la respuesta correcta:",
+      "options": [
+        "Un espacio dotado con tecnología y herramientas para la creación de ideas o proyectos individuales o en equipo.",
+        "Una biblioteca dentro de un supermercado.",
+        "Un espacio destinado a depósito intermedio de documentos.",
+        "Un centro de interés sobre alimentación."
+      ],
+      "answerIndex": 0,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-67",
+      "text": "¿A quién se dirige la Lectura Fácil?",
+      "options": [
+        "A todas las personas, en especial a aquellas que tienen dificultades lectoras transitorias o permanentes.",
+        "Solamente a personas con diversidad funcional.",
+        "Exclusivamente son textos dirigidos a personas mayores.",
+        "Son textos especialmente diseñados para invidentes."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-68",
+      "text": "La digitalización de las obras que integran la Biblioteca Digital de Castilla y León se hace con cargo al presupuesto de:",
+      "options": [
+        "La Consejería de Cultura y Turismo.",
+        "La Consejería de Cultura y Turismo con la colaboración del Ministerio de Cultura.",
+        "La Consejería de Cultura y Turismo con la colaboración del Ministerio de Cultura y las entidades municipales de donde proceden los fondos.",
+        "La Consejería de Cultura y Turismo con la colaboración las entidades municipales de donde proceden los fondos."
+      ],
+      "answerIndex": 1,
+      "category": "tecnologias",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-69",
+      "text": "La Biblioteca Virtual de Prensa Histórica comprende:",
+      "options": [
+        "La colección de prensa histórica que alberga la Biblioteca Nacional.",
+        "La hemeroteca digital de bibliotecas, archivos y museos públicos.",
+        "La hemeroteca digital de bibliotecas, archivos y museos públicos y privados.",
+        "Las colecciones de prensa histórica de las universidades públicas españolas."
+      ],
+      "answerIndex": 2,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-70",
+      "text": "¿Cuál es el único bestiario escrito en castellano que se conserva en la actualidad?",
+      "options": [
+        "El Libro de los seres imaginarios.",
+        "El Bestiario de Aberdeen.",
+        "El Bestiario de Juan de Austria.",
+        "Physiologus. 14"
+      ],
+      "answerIndex": 2,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-71",
+      "text": "Las primeras bibliotecas en la época mesopotámica se ubicaban:",
+      "options": [
+        "En edificios propios.",
+        "Dentro de los templos.",
+        "En lugares céntricos.",
+        "En ciudades comerciales."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-72",
+      "text": "¿Por qué motivo es significativo para la Biblioteca Nacional de España el año 1712?",
+      "options": [
+        "Comienza a llamarse Biblioteca Nacional.",
+        "En ese año se abrió al público.",
+        "Fue el año de su fundación.",
+        "Pasó a depender del Ministerio de la Gobernación."
+      ],
+      "answerIndex": 1,
+      "category": "servicios",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-73",
+      "text": "El modelo “Pick and choose” elegido por algunas bibliotecas para la gestión de su colección de libros electrónicos, ¿con qué parte del proceso técnico está relacionado?",
+      "options": [
+        "Canje.",
+        "Selección y adquisición.",
+        "Catalogación.",
+        "Análisis documental."
+      ],
+      "answerIndex": 1,
+      "category": "procesos",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-74",
+      "text": "¿Cuál de las siguientes plataformas NO se utiliza para la lectura de libros electrónicos?",
+      "options": [
+        "Bubok.",
+        "Nubico.",
+        "Skoobe.",
+        "24symbol."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-75",
+      "text": "¿Cuál de los siguientes formatos de archivos para la lectura de libros electrónicos NO fue específicamente diseñado para ellos?",
+      "options": [
+        "EPUB.",
+        "MOBI.",
+        "CBR.",
+        "PDF."
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-76",
+      "text": "Según el artículo 22 del Real Decreto 582/1989, de 19 de mayo, por el que se aprueba el Reglamento de Bibliotecas Públicas del Estado y del Sistema Español de Bibliotecas, ¿qué bibliotecas NO están integradas en el Sistema Español de Bibliotecas?",
+      "options": [
+        "Las Bibliotecas escolares.",
+        "Las Bibliotecas de las Universidades públicas. 15",
+        "Las Bibliotecas Públicas del Estado.",
+        "Las Bibliotecas de las Reales Academias."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-77",
+      "text": "¿Qué órgano ha sido el encargado de elaborar el “III Plan Estratégico 2019-2023 Bibliotecas en Igualdad”?",
+      "options": [
+        "La Biblioteca Nacional.",
+        "El Consejo de Cooperación Bibliotecaria.",
+        "Las Bibliotecas Públicas del Estado.",
+        "El Observatorio de la Lectura y el Libro."
+      ],
+      "answerIndex": 1,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-78",
+      "text": "De acuerdo con el artículo 18 de la Ley 9/1989, de 30 de noviembre, de Bibliotecas de Castilla y León, se impulsará la creación de sistemas urbanos de bibliotecas en los municipios:",
+      "options": [
+        "De más de 10.000 habitantes.",
+        "De más de 20.000 habitantes.",
+        "De más de 30.000 habitantes.",
+        "De más de 50.000 habitantes."
+      ],
+      "answerIndex": 1,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-79",
+      "text": "Según la Carta de Servicios al Ciudadano de la Biblioteca de Castilla y León, ésta tiene el compromiso anual de renovar la colección, en qué porcentaje:",
+      "options": [
+        "Un 5%.",
+        "Un 7%.",
+        "Un 8%.",
+        "Un 10%."
+      ],
+      "answerIndex": 0,
+      "category": "gestion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-80",
+      "text": "Según el artículo 11 del Real Decreto 56/1991, de 21 de marzo, por el que se establecen la estructura y funciones de la Biblioteca de Castilla y León, la sección técnica de la Biblioteca de Castilla y León encargada de la formación de una biblioteca profesional es:",
+      "options": [
+        "El Centro Bibliográfico de Castilla y León.",
+        "La Hemeroteca de Castilla y León.",
+        "La Biblioteca Pública del Estado de Valladolid.",
+        "La Biblioteca de Estudios Castellano-Leoneses."
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-81",
+      "text": "Señale la respuesta incorrecta:",
+      "options": [
+        "La Constitución Española consta de un preámbulo, una parte dogmática y una parte orgánica.",
+        "La Constitución Española consta de ciento sesenta y nueve artículos, repartidos en un título preliminar y otros diez títulos más.",
+        "La Constitución Española tiene cuatro disposiciones adicionales.",
+        "La Constitución Española tiene una disposición derogatoria y dos disposiciones finales. 16"
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-82",
+      "text": "Según establece el artículo 70 del Estatuto de Autonomía de Castilla y León, los museos, bibliotecas y archivos son competencia:",
+      "options": [
+        "Exclusiva del Estado.",
+        "Exclusiva de la Comunidad de Castilla y León.",
+        "Exclusiva de la Comunidad de Castilla y León siempre que no sean de titularidad estatal.",
+        "Desarrollo normativo y ejecución de la Comunidad de Castilla y León en el marco de la legislación básica del Estado."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-83",
+      "text": "¿Qué es DigComp?, señale la respuesta correcta:",
+      "options": [
+        "Un marco detallado para el desarrollo de la competencia digital de los ciudadanos en Europa.",
+        "Un protocolo de colaboración para el intercambio de información.",
+        "Una lista de distribución de la Biblioteca de la Facultad de Traducción y Documentación de la Universidad de Salamanca.",
+        "Un sistema abierto de información de revistas publicadas en castellano, documental, subscripciones, búsqueda de documentos, alertas, catálogos, tesis…"
+      ],
+      "answerIndex": 0,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-84",
+      "text": "¿Cuál de las siguientes licencias Creative Commons, NO existe?",
+      "options": [
+        "CC BY.",
+        "CC BY-NC-ND.",
+        "CC BY-ND-SA.",
+        "CC BY-SA."
+      ],
+      "answerIndex": 2,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-85",
+      "text": "¿Qué significan las siglas OAI-PMH?",
+      "options": [
+        "Open access initiative – Protocol for Method Harvesting.",
+        "Open access initiative – Protocol for Metadata Harvesting.",
+        "Open archives initiative – Protocol for Method Harvesting.",
+        "Open archives initiative – Protocol for Metadata Harvesting."
+      ],
+      "answerIndex": 3,
+      "category": "legislacion",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-86",
+      "text": "¿A qué se denomina encuadernación plusgémina ?",
+      "options": [
+        "Al tipo de encuadernación que consiste en reunir en un volumen dos o más obras.",
+        "A la que presenta el libro sin cortar y el lomo y las tapas cubiertos de papel impreso.",
+        "La que se distingue por la delicadeza de su acabado y la riqueza y lujo de los materiales en ella empleados.",
+        "La primera de un libro que, tratándose de ejemplares antiguos, dan valor a éste. 17"
+      ],
+      "answerIndex": 0,
+      "category": "bibliografia",
+      "difficulty": "normal",
+      "source": "examen1-2022"
+    },
+    {
+      "id": "examen1-2022-87",
       "text": "¿Cuál es el incunable español ilustrado más antiguo?",
       "options": [
         "La Crónica de España, impresa en Zaragoza en 1479.",
         "Los trabajos de Hércules, impreso en Zamora en 1483.",
-        "El \"Fasciculus temporum\" impreso en Sevilla en 1480.",
+        "El “Fasciculus temporum” impreso en Sevilla en 1480.",
         "Tirant lo Blanch, impreso en Valencia en 1490."
       ],
       "answerIndex": 2,
-      "answer": 2,
-      "theme": "historia",
+      "category": "bibliografia",
       "difficulty": "normal",
       "source": "examen1-2022"
     },
     {
-      "id": "examen1-88",
+      "id": "examen1-2022-88",
       "text": "La Orden CYT/1199/2019, de 29 de noviembre, por la que se desarrolla la Estructura Orgánica de los Servicios Centrales de la Consejería de Cultura y Turismo establece que la promoción de la lectura y del libro será ejercida por:",
       "options": [
         "El Servicio de Bibliotecas y Biblioteca de Castilla y León.",
@@ -1300,8 +1218,7 @@
         "El Consejo de Archivos, Bibliotecas y Centros Museísticos de Castilla y León."
       ],
       "answerIndex": 0,
-      "answer": 0,
-      "theme": "gestion",
+      "category": "legislacion",
       "difficulty": "normal",
       "source": "examen1-2022"
     }

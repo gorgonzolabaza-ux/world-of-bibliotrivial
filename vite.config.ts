@@ -8,6 +8,14 @@ function contentPlugin() {
     configureServer(server) {
       server.middlewares.use('/content', (req, res, next) => {
         const urlPath = (req.url || '/').split('?')[0];
+        // solo se sirve lo que el juego consume: el manifest y los JSON de preguntas.
+        // los PDF de origen no se publican ni en desarrollo.
+        const allowed = urlPath === '/manifest.json' || urlPath.startsWith('/questions/');
+        if (!allowed) {
+          res.statusCode = 404;
+          res.end('not found');
+          return;
+        }
         const filePath = path.join(process.cwd(), 'content', urlPath);
         if (!fs.existsSync(filePath)) { next(); return; }
         const stat = fs.statSync(filePath);
@@ -28,6 +36,12 @@ function contentPlugin() {
 
 export default defineConfig({
   plugins: [contentPlugin()],
-  server: { port: 5173, open: true },
+  server: {
+    port: 5173,
+    open: true,
+    // .tmp es carpeta de trabajo (capturas, utilidades): no hace falta vigilarla
+    // los *.tmpdir son ficheros temporales de los editores al guardar
+    watch: { ignored: ['**/.tmp/**', '**/dist/**', '**/.*.tmpdir/**', '**/*.tmp'] },
+  },
   build: { target: 'es2022' },
 });
