@@ -35,6 +35,9 @@ function contentPlugin() {
 }
 
 export default defineConfig({
+  // rutas relativas: la app funciona en la raíz (Vercel, Netlify) y también
+  // bajo un subpath (GitHub Pages: /world-of-bibliotrivial/)
+  base: './',
   plugins: [contentPlugin()],
   server: {
     port: 5173,

@@ -20,7 +20,8 @@ const VALID_CATEGORIES = new Set<string>(CATEGORIES.map((c) => c.key));
 
 export async function fetchManifest(): Promise<Manifest | null> {
   try {
-    const res = await fetch('/content/manifest.json', { cache: 'no-store' });
+    // BASE_URL es './' para que funcione igual en la raíz que en un subpath
+    const res = await fetch(`${import.meta.env.BASE_URL}content/manifest.json`, { cache: 'no-store' });
     if (!res.ok) return null;
     return (await res.json()) as Manifest;
   } catch {
