@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { CATEGORIES } from './categories';
 import type { CategoryKey } from './categories';
 import {
@@ -16,6 +16,7 @@ import {
   HUB_HEIGHT,
 } from './board';
 import type { TableTextures } from './table';
+import { quality } from './quality';
 import dieWoodUrl from './assets/textures/die_wood.jpg?url';
 import marbleUrl from './assets/textures/marble_grain.jpg?url';
 
@@ -62,7 +63,7 @@ async function loadIconTexture(url: string): Promise<THREE.Texture> {
     ctx.drawImage(img, 0, 0, size, size);
     const tex = new THREE.CanvasTexture(canvas);
     tex.colorSpace = THREE.SRGBColorSpace;
-    tex.anisotropy = 4;
+    tex.anisotropy = Math.min(4, quality.maxAnisotropy);
     return tex;
   } finally {
     URL.revokeObjectURL(blobUrl);
@@ -108,7 +109,7 @@ async function loadGrainTexture(): Promise<THREE.Texture> {
   tex.repeat.set(0.115, 0.115);
   tex.center.set(0.5, 0.5);
   tex.rotation = 0.32;
-  tex.anisotropy = 8;
+  tex.anisotropy = Math.min(8, quality.maxAnisotropy);
   return tex;
 }
 
@@ -127,7 +128,7 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(0.5, 0.5);
-  tex.anisotropy = 8;
+  tex.anisotropy = Math.min(8, quality.maxAnisotropy);
   return tex;
 }
 
@@ -224,7 +225,7 @@ export function createBoardView(textures: TableTextures): BoardView {
         new THREE.MeshStandardMaterial({ color: 0x3b2c1d, metalness: 0.5, roughness: 0.44 }),
       );
       hub.position.set(0, PLATE_HEIGHT + HUB_HEIGHT / 2, 0);
-      hub.castShadow = true;
+      hub.castShadow = quality.tileShadows;
       hub.receiveShadow = true;
       hub.userData = {
         nodeId: node.id,
@@ -275,7 +276,7 @@ export function createBoardView(textures: TableTextures): BoardView {
     const tile = new THREE.Mesh(geometry, material);
     tileMaterials.push(material);
     tile.position.set(p.x, p.y - height / 2, p.z);
-    tile.castShadow = true;
+    tile.castShadow = quality.tileShadows;
     tile.receiveShadow = true;
     tile.userData = {
       nodeId: node.id,

@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { buildBoard, NODES, ADJ } from './board';
 import { createPlayerToken } from './token';
 import type { Race } from './player';
@@ -6,7 +6,8 @@ import { createDie } from './die';
 import { CATEGORIES, CATEGORY_BY_KEY } from './categories';
 import type { Category, CategoryKey } from './categories';
 import { createBoardView } from './boardView';
-import { configureRenderer, createCamera, createControls, createStage, loadTableTextures } from './table';
+import { configureRenderer, createCamera, createControls, createStage, loadTableTextures, pixelRatioFor, tuneFogForCamera, updateControlLimits } from './table';
+import { quality } from './quality';
 import { getQuestions, clearQuestionCache } from './content';
 import { loadBestRuns, saveBestRun, unlockAchievement, loadAchievements } from './persistence';
 import { achievementName } from './achievements';
@@ -30,7 +31,10 @@ const statusEl = document.getElementById('status')!;
 
 // ---------- Escena: mesa, cámara y tablero ----------
 const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({
+  antialias: quality.antialias,
+  powerPreference: 'high-performance',
+});
 configureRenderer(renderer);
 renderer.setSize(window.innerWidth, window.innerHeight);
 app.appendChild(renderer.domElement);
@@ -44,6 +48,7 @@ controls.addEventListener('start', () => {
 
 const textures = loadTableTextures(renderer);
 createStage(scene, textures);
+tuneFogForCamera(scene, camera);
 
 buildBoard();
 const boardView = createBoardView(textures);
@@ -490,13 +495,59 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
 
 // ---------- Render loop ----------
 const clock = new THREE.Clock();
+
+/*
+ * Resolución adaptativa. El coste de esta escena es relleno de píxeles, así que
+ * lo más eficaz en un móvil flojo es dibujar menos píxeles, no menos cosas: se
+ * mantienen físicas, texturas, sombras y carta, y baja solo la resolución de
+ * dibujo. Si el dispositivo va sobrado, vuelve a subir sola.
+ */
+let renderScale = pixelRatioFor(window.devicePixelRatio, quality.maxPixelRatio);
+let sampledFrames = 0;
+let sampledTime = 0;
+let warmup = 2.5;
+let cooldown = 0;
+
+function adaptResolution(frameSeconds: number) {
+  if (warmup > 0) {
+    warmup -= frameSeconds;
+    return;
+  }
+  if (cooldown > 0) {
+    cooldown -= frameSeconds;
+    return;
+  }
+  sampledFrames++;
+  sampledTime += frameSeconds;
+  if (sampledFrames < 90) return;
+
+  const average = sampledTime / sampledFrames;
+  sampledFrames = 0;
+  sampledTime = 0;
+
+  const ceiling = quality.maxPixelRatio;
+  const floor = Math.max(0.65, ceiling * 0.5);
+  let next = renderScale;
+  if (average > 1 / 45 && renderScale > floor) next = Math.max(floor, renderScale - 0.2);
+  else if (average < 1 / 58 && renderScale < ceiling) next = Math.min(ceiling, renderScale + 0.15);
+
+  if (Math.abs(next - renderScale) > 0.01) {
+    renderScale = next;
+    renderer.setPixelRatio(renderScale);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    cooldown = 1.5;
+  }
+}
+
 function animate() {
   requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const raw = clock.getDelta();
+  const dt = Math.min(raw, 0.05);
   die.update(dt);
   token.update(dt);
   controls.update();
   renderer.render(scene, camera);
+  adaptResolution(raw);
 }
 animate();
 
@@ -504,7 +555,11 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  if (!userMovedCamera) fit();
+  if (!userMovedCamera) {
+    fit();
+    updateControlLimits(controls, camera);
+    tuneFogForCamera(scene, camera);
+  }
 });
 
 async function refreshMenuStats() {

@@ -31,6 +31,22 @@ Las del Trivial de mesa:
 ### Ayudas de desarrollo
 
 - `?debug=quesitos` arranca la partida con las seis cuñas del quesito ya puestas, para revisar la ficha.
+- `?tier=low|medium|high` fuerza el nivel de calidad, y `?dpr=1.5` el factor de resolución. Sirve para probar cómo se verá en un móvil desde el escritorio.
+- `?debug=fit` escribe en consola la distancia de cámara y la extensión del tablero en pantalla.
+
+## Rendimiento
+
+La escena es casi todo relleno de píxeles, así que lo que más manda es cuántos píxeles se dibujan. Hay tres niveles que se eligen solos según el dispositivo:
+
+| | Resolución máxima | Sombras | Sheen del paño | Física |
+|---|---|---|---|---|
+| high | ×2 | 2048, suaves | sí | 6 subpasos |
+| medium | ×1,5 | 1024 | sí | 4 subpasos |
+| low | ×1,15 | 512, sin sombra de casillas | no | 3 subpasos |
+
+Ningún nivel quita texturas, físicas ni ninguna mecánica: solo baja la resolución de dibujo y el detalle de la iluminación. Además, en caliente, si el dispositivo no llega a 45 fps se reduce la resolución sola (hasta ×0,65) y si va sobrado vuelve a subir.
+
+En vertical la cámara se coloca más cenital y el encuadre pasa a limitarse por el ancho: el tablero ocupa el 84 % del lado corto tanto en apaisado como en vertical.
 
 ## Desarrollo
 

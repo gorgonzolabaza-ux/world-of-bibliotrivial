@@ -173,6 +173,16 @@ function collectStarts(text, max = 400) {
   return starts;
 }
 
+/**
+ * Los números de página del PDF se pegan al final del texto del salto de página.
+ * Se detectan porque van detrás de un signo de puntuación: "…musicales. 7".
+ */
+const PAGE_NUMBER_TAIL = /([.:;)])\s+\d{1,3}\s*$/;
+
+function stripPageNumber(text) {
+  return text.replace(PAGE_NUMBER_TAIL, '$1').trim();
+}
+
 /** Separa enunciado y las cuatro opciones a)…d) de un bloque. */
 function parseBlock(block) {
   const re = /(?:^|\s)([a-dA-D])[).]\s+/g;
@@ -196,14 +206,12 @@ function parseBlock(block) {
   let questionText = block.slice(0, marks[0].index).replace(/\s+/g, ' ').trim();
   // el número de página o de pregunta que se cuela delante del enunciado
   questionText = questionText.replace(/^\d{1,3}\s*[.)]\s*/, '').trim();
+  questionText = stripPageNumber(questionText);
 
   const options = marks.map((mark, i) => {
     const end = i + 1 < marks.length ? marks[i + 1].index : block.length;
-    return block.slice(mark.start, end).replace(/\s+/g, ' ').trim();
+    return stripPageNumber(block.slice(mark.start, end).replace(/\s+/g, ' '));
   });
-  // la última opción se corta donde empieza el bloque siguiente; por si acaso,
-  // se recorta un posible arranque de la pregunta siguiente pegado al final
-  options[3] = options[3].replace(/\s+\d{1,3}\s*[.)]\s*$/, '').trim();
 
   return { questionText, options };
 }
