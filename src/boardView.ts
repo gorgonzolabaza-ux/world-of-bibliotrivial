@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { CATEGORIES } from './categories';
 import type { CategoryKey } from './categories';
 import {
@@ -24,10 +24,20 @@ import dadoUrl from './assets/icons/dado-icon.png?url';
 export interface BoardView {
   group: THREE.Group;
   tiles: THREE.Mesh[];
+  /** Orienta los iconos planos para que se lean rectos desde la cámara. */
+  orientIcons(): void;
   worldPos(nodeId: number): THREE.Vector3;
   highlight(ids: Set<number> | null): void;
   setQuesito(category: CategoryKey, on: boolean): void;
   resetQuesitos(): void;
+}
+
+/**
+ * Giro dentro del plano del tablero para que el icono quede apoyado en el
+ * canto exterior y mirando al centro: su "arriba" apunta al centro.
+ */
+function radialYaw(x: number, z: number): number {
+  return Math.atan2(x, z);
 }
 
 function shade(color: number, factor: number): number {
@@ -341,6 +351,7 @@ export function createBoardView(textures: TableTextures): BoardView {
       const iconMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.92, depthWrite: false });
       const icon = new THREE.Mesh(new THREE.PlaneGeometry(radius * 1.25, radius * 1.25), iconMat);
       icon.rotation.x = -Math.PI / 2;
+      icon.rotation.z = radialYaw(p.x, p.z);
       icon.position.set(p.x, p.y + 0.014, p.z);
       group.add(icon);
       iconPlanes.push({ mesh: icon, category: node.category });
@@ -351,6 +362,7 @@ export function createBoardView(textures: TableTextures): BoardView {
         new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false, color: 0xfdf6e6 }),
       );
       icon.rotation.x = -Math.PI / 2;
+      icon.rotation.z = radialYaw(p.x, p.z);
       icon.position.set(p.x, p.y + 0.012, p.z);
       group.add(icon);
       diceIconPlanes.push(icon);
@@ -397,9 +409,24 @@ export function createBoardView(textures: TableTextures): BoardView {
       });
   }
 
+  /* ---------- orientación de los iconos ---------- */
+  /*
+   * El canto exterior de la rueda es el suelo: cada icono se apoya en él y
+   * mira hacia el centro, como los números de una esfera de reloj. Se traduce
+   * a un giro dentro del plano del tablero, que para una calcomanía plana es
+   * rotation.z después de tumbarla con rotation.x.
+   */
+  const orientable = [...iconPlanes.map((i) => i.mesh), ...diceIconPlanes];
+  const orientIcons = () => {
+    for (const mesh of orientable) {
+      mesh.rotation.z = radialYaw(mesh.position.x, mesh.position.z);
+    }
+  };
+
   return {
     group,
     tiles,
+    orientIcons,
     worldPos(nodeId: number) {
       const node = NODES[nodeId];
       return new THREE.Vector3(node.pos.x, node.pos.y, node.pos.z);

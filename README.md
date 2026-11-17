@@ -33,6 +33,7 @@ Las del Trivial de mesa:
 - `?debug=quesitos` arranca la partida con las seis cuñas del quesito ya puestas, para revisar la ficha.
 - `?tier=low|medium|high` fuerza el nivel de calidad, y `?dpr=1.5` el factor de resolución. Sirve para probar cómo se verá en un móvil desde el escritorio.
 - `?debug=fit` escribe en consola la distancia de cámara y la extensión del tablero en pantalla.
+- `?debug=top` pone la cámara cenital sobre el tablero, para revisar la orientación de los iconos y el reparto de casillas.
 
 ## Rendimiento
 

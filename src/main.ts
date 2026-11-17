@@ -50,6 +50,14 @@ const textures = loadTableTextures(renderer);
 createStage(scene, textures);
 tuneFogForCamera(scene, camera);
 
+// vista cenital de depuración: ?debug=top
+if (new URLSearchParams(location.search).get('debug') === 'top') {
+  camera.position.set(0, 40, 0.001);
+  camera.lookAt(0, 0, 0);
+  camera.updateProjectionMatrix();
+  controls.enabled = false;
+}
+
 buildBoard();
 const boardView = createBoardView(textures);
 scene.add(boardView.group);
