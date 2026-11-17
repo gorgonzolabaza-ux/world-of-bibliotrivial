@@ -11,6 +11,7 @@ Juego de tablero 3D en el navegador inspirado en el Trivial, con preguntas de la
 - **Ficha con peana**: el monigote va sobre un pedestal cilíndrico con seis huecos donde se van encajando las cuñas de quesito que ganas.
 - **Dado 3D** que rueda sobre el tablero y cae mostrando arriba el número que has sacado.
 - **Carta física**: la pregunta llega como una carta girada que se voltea sobre la mesa.
+- **Sonido sintetizado con Web Audio**: dado rodando, ficha saltando, quesito conseguido y victoria. Sin ficheros de audio, así que no pesa; se puede silenciar desde el HUD y el ajuste se recuerda.
 - **Seis categorías** que agrupan los nueve temas del temario: Legislación, Procesos y documentación, Servicios y tipología, Gestión, Bibliografía e historia, Nuevas tecnologías.
 - **Personaje personalizable** (raza: humano/elfo/enano/orco, color).
 - Dificultades: Normal (C1/C2) y Difícil (A1/A2).
@@ -34,6 +35,7 @@ Las del Trivial de mesa:
 - `?tier=low|medium|high` fuerza el nivel de calidad, y `?dpr=1.5` el factor de resolución. Sirve para probar cómo se verá en un móvil desde el escritorio.
 - `?debug=fit` escribe en consola la distancia de cámara y la extensión del tablero en pantalla.
 - `?debug=top` pone la cámara cenital sobre el tablero, para revisar la orientación de los iconos y el reparto de casillas.
+- `?debug=sonidos` reproduce los cuatro efectos en orden.
 
 ## Rendimiento
 

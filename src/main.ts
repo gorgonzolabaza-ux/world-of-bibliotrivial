@@ -11,6 +11,7 @@ import { quality } from './quality';
 import { getQuestions, clearQuestionCache } from './content';
 import { loadBestRuns, saveBestRun, unlockAchievement, loadAchievements } from './persistence';
 import { achievementName } from './achievements';
+import { audioState, isMuted, playDice, playQuesito, playStep, playWin, setMuted, unlockAudio } from './audio';
 import type { GameState, PlayerState, Question } from './types';
 
 // ---------- DOM ----------
@@ -18,6 +19,32 @@ const app = document.getElementById('app')!;
 const menu = document.getElementById('menu')!;
 const hud = document.getElementById('hud')!;
 const diceBtn = document.getElementById('dice') as HTMLButtonElement;
+const soundBtn = document.getElementById('soundBtn') as HTMLButtonElement;
+
+// ---------- Sonido ----------
+function renderSoundButton() {
+  soundBtn.textContent = isMuted() ? '🔇' : '🔊';
+  soundBtn.classList.toggle('muted', isMuted());
+  soundBtn.title = isMuted() ? 'Activar el sonido' : 'Silenciar el sonido';
+}
+soundBtn.addEventListener('click', (ev) => {
+  ev.stopPropagation();
+  setMuted(!isMuted());
+  renderSoundButton();
+  if (!isMuted()) unlockAudio();
+});
+renderSoundButton();
+
+// el audio necesita un gesto del usuario; el primer clic en el juego sirve
+document.addEventListener('pointerdown', () => unlockAudio(), { once: true });
+
+// ?debug=sonidos reproduce los cuatro efectos en orden, para comprobarlos
+if (new URLSearchParams(location.search).get('debug') === 'sonidos') {
+  unlockAudio();
+  [playDice, playStep, playQuesito, playWin].forEach((fn, i) => window.setTimeout(fn, 400 + i * 1700));
+  window.setTimeout(() => console.log('[audio]', audioState()), 1500);
+  (window as unknown as { __audioState?: () => string }).__audioState = audioState;
+}
 const modal = document.getElementById('modal')!;
 const card3d = document.getElementById('card3d')!;
 const qcat = document.getElementById('qcat')!;
@@ -255,6 +282,7 @@ diceBtn.addEventListener('click', async () => {
   animating = true;
   diceBtn.disabled = true;
   diceBtn.textContent = 'Tirando…';
+  playDice();
   const roll = await die.roll();
   const { nodes, paths } = computeReachable(state.players[0].position, roll);
   reachableNodes = nodes;
@@ -318,7 +346,7 @@ function animateMove(target: THREE.Vector3): Promise<void> {
       token.group.position.lerpVectors(start, target, eased);
       token.group.position.y = target.y + Math.sin(t * Math.PI) * 0.5;
       if (t < 1) requestAnimationFrame(step);
-      else { token.group.position.copy(target); resolve(); }
+      else { token.group.position.copy(target); playStep(); resolve(); }
     }
     requestAnimationFrame(step);
   });
@@ -443,12 +471,14 @@ async function answerQuestion(idx: number, isHeadquarters: boolean, isFinal: boo
       unlockAchievement('quesito_' + category);
       if (!perThemeWrong[category]) unlockAchievement('perfect_theme_' + category);
       qfeedback.textContent += ' 🧀 ¡Quesito conseguido!';
+      playQuesito();
     }
     if (streak === 5) unlockAchievement('streak_5');
     if (streak === 10) unlockAchievement('streak_10');
     if (isFinal) {
       finalWon = true;
       // win
+      playWin();
       state.finished = true;
       const duration = Date.now() - startedAt;
       diceBtn.style.display = 'none';
