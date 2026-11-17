@@ -24,8 +24,9 @@ Los seis iconos son obra de **Lorc** y se distribuyen bajo **Creative Commons At
 | Gestión | *Gears* | <https://game-icons.net/1x1/lorc/gears.html> |
 | Bibliografía e historia | *Quill ink* | <https://game-icons.net/1x1/lorc/quill-ink.html> |
 | Nuevas tecnologías | *Circuitry* | <https://game-icons.net/1x1/lorc/circuitry.html> |
+| Casilla "tira otra vez" | *Dice six faces five* (Delapouite) | <https://game-icons.net/1x1/delapouite/dice-six-faces-five.html> |
 
-> Icons made by Lorc. Available on <https://game-icons.net> (CC BY 3.0).
+> Icons made by Lorc and Delapouite. Available on <https://game-icons.net> (CC BY 3.0).
 
 Se han descargado con fondo transparente (`/icons/ffffff/transparent/...`) y no se han modificado más que para teñirlos por CSS o rasterizarlos a textura.
 

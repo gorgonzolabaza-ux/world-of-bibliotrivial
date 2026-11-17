@@ -19,6 +19,7 @@ import type { TableTextures } from './table';
 import { quality } from './quality';
 import dieWoodUrl from './assets/textures/die_wood.jpg?url';
 import marbleUrl from './assets/textures/marble_grain.jpg?url';
+import diceIconUrl from './assets/icons/dado.svg?url';
 
 export interface BoardView {
   group: THREE.Group;
@@ -225,6 +226,7 @@ export function createBoardView(textures: TableTextures): BoardView {
 
   /* ---------- casillas ---------- */
   const iconPlanes: { mesh: THREE.Mesh; category: CategoryKey }[] = [];
+  const diceIconPlanes: THREE.Mesh[] = [];
   const tileMaterials: THREE.MeshStandardMaterial[] = [];
   const haloMaterial = new THREE.MeshBasicMaterial({
     color: 0xffd98a,
@@ -329,6 +331,16 @@ export function createBoardView(textures: TableTextures): BoardView {
       icon.position.set(p.x, p.y + 0.014, p.z);
       group.add(icon);
       iconPlanes.push({ mesh: icon, category: node.category });
+    } else if (isRollAgain) {
+      // dado grabado en las casillas de "tira otra vez"
+      const icon = new THREE.Mesh(
+        new THREE.PlaneGeometry(radius * 1.15, radius * 1.15),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.82, depthWrite: false }),
+      );
+      icon.rotation.x = -Math.PI / 2;
+      icon.position.set(p.x, p.y + 0.012, p.z);
+      group.add(icon);
+      diceIconPlanes.push(icon);
     }
   }
 
@@ -343,6 +355,20 @@ export function createBoardView(textures: TableTextures): BoardView {
       })
       .catch(() => {
         /* sin mármol: quedan de color liso */
+      });
+  }
+
+  /* ---------- dado grabado en las casillas de "tira otra vez" ---------- */
+  if (diceIconPlanes.length > 0) {
+    loadIconTexture(diceIconUrl)
+      .then((tex) => {
+        for (const mesh of diceIconPlanes) {
+          (mesh.material as THREE.MeshBasicMaterial).map = tex;
+          (mesh.material as THREE.MeshBasicMaterial).needsUpdate = true;
+        }
+      })
+      .catch(() => {
+        /* sin icono: la casilla sigue siendo la clara del anillo */
       });
   }
 
