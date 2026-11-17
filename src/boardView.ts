@@ -19,6 +19,7 @@ import type { TableTextures } from './table';
 import { quality } from './quality';
 import dieWoodUrl from './assets/textures/die_wood.jpg?url';
 import marbleUrl from './assets/textures/marble_grain.jpg?url';
+import dadoUrl from './assets/icons/dado-icon.png?url';
 
 export interface BoardView {
   group: THREE.Group;
@@ -142,55 +143,9 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
 }
 
 /**
- * Dado para las casillas de "tira otra vez", en el mismo lenguaje plano que los
- * iconos de categoría: silueta rotunda, sin perspectiva, con el contorno como
- * único detalle. Colores invertidos respecto a esos iconos porque la casilla es
- * clara: cuerpo marfil y pips oscuros, más un contorno oscuro que lo define
- * sobre el marfil.
+ * Tablero: base de madera, seis paneles de color con veta, casillas de mármol,
+ * sedes con su icono y las casillas de "tira otra vez" con el dado.
  */
-function makeDieIconTexture(): THREE.Texture {
-  const size = 256;
-  const canvas = document.createElement('canvas');
-  canvas.width = canvas.height = size;
-  const ctx = canvas.getContext('2d')!;
-
-  const margin = size * 0.12;
-  const side = size - margin * 2;
-  const radius = side * 0.22;
-
-  // contorno: la misma forma, más grande y oscura, para que se lea sobre el marfil
-  const outline = (grow: number, color: string) => {
-    ctx.beginPath();
-    if (typeof (ctx as unknown as { roundRect?: unknown }).roundRect === 'function') {
-      (ctx as unknown as CanvasRenderingContext2D & { roundRect: (x: number, y: number, w: number, h: number, r: number) => void })
-        .roundRect(margin - grow, margin - grow, side + grow * 2, side + grow * 2, radius + grow);
-    } else {
-      ctx.rect(margin - grow, margin - grow, side + grow * 2, side + grow * 2);
-    }
-    ctx.fillStyle = color;
-    ctx.fill();
-  };
-
-  outline(size * 0.022, 'rgba(52,38,22,0.9)');
-  outline(0, '#f6ebd2');
-
-  // pips oscuros
-  const pips: [number, number][] = [
-    [0.3, 0.3], [0.7, 0.3], [0.5, 0.5], [0.3, 0.7], [0.7, 0.7],
-  ];
-  for (const [u, v] of pips) {
-    ctx.beginPath();
-    ctx.arc(margin + side * u, margin + side * v, side * 0.088, 0, Math.PI * 2);
-    ctx.fillStyle = '#34261a';
-    ctx.fill();
-  }
-
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = Math.min(4, quality.maxAnisotropy);
-  return tex;
-}
-
 export function createBoardView(textures: TableTextures): BoardView {
   const group = new THREE.Group();
   const tiles: THREE.Mesh[] = [];
@@ -393,7 +348,7 @@ export function createBoardView(textures: TableTextures): BoardView {
       // dado grabado en las casillas de "tira otra vez"
       const icon = new THREE.Mesh(
         new THREE.PlaneGeometry(radius * 1.3, radius * 1.3),
-        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false }),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false, color: 0xfdf6e6 }),
       );
       icon.rotation.x = -Math.PI / 2;
       icon.position.set(p.x, p.y + 0.012, p.z);
@@ -416,13 +371,17 @@ export function createBoardView(textures: TableTextures): BoardView {
       });
   }
 
-  /* ---------- dado grabado en las casillas de "tira otra vez" ---------- */
+  /* ---------- dado en las casillas de "tira otra vez" ---------- */
   if (diceIconPlanes.length > 0) {
-    const tex = makeDieIconTexture();
-    for (const mesh of diceIconPlanes) {
-      (mesh.material as THREE.MeshBasicMaterial).map = tex;
-      (mesh.material as THREE.MeshBasicMaterial).needsUpdate = true;
-    }
+    new THREE.TextureLoader().load(dadoUrl, (tex) => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = Math.min(4, quality.maxAnisotropy);
+      for (const mesh of diceIconPlanes) {
+        const material = mesh.material as THREE.MeshBasicMaterial;
+        material.map = tex;
+        material.needsUpdate = true;
+      }
+    });
   }
 
   /* ---------- iconos de categoría sobre las sedes ---------- */
