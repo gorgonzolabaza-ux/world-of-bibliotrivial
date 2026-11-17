@@ -46,8 +46,12 @@ function loadImage(url: string): Promise<HTMLImageElement> {
   });
 }
 
-/** Rasteriza un SVG monocromo a textura (los iconos de game-icons.net no traen width/height). */
-async function loadIconTexture(url: string): Promise<THREE.Texture> {
+/**
+ * Carga un SVG monocromo como imagen. Los iconos de game-icons.net no traen
+ * width/height, así que se los inyectamos para que rastericen a un tamaño
+ * decente en vez del 300×150 por defecto.
+ */
+async function loadSvgImage(url: string): Promise<HTMLImageElement> {
   const res = await fetch(url);
   let svg = await res.text();
   if (!/\bwidth=/.test(svg.slice(0, 400))) {
@@ -55,19 +59,24 @@ async function loadIconTexture(url: string): Promise<THREE.Texture> {
   }
   const blobUrl = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
   try {
-    const img = await loadImage(blobUrl);
-    const size = 256;
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = size;
-    const ctx = canvas.getContext('2d')!;
-    ctx.drawImage(img, 0, 0, size, size);
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.anisotropy = Math.min(4, quality.maxAnisotropy);
-    return tex;
+    return await loadImage(blobUrl);
   } finally {
     URL.revokeObjectURL(blobUrl);
   }
+}
+
+/** Rasteriza un SVG monocromo a textura. */
+async function loadIconTexture(url: string): Promise<THREE.Texture> {
+  const img = await loadSvgImage(url);
+  const size = 256;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  ctx.drawImage(img, 0, 0, size, size);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = Math.min(4, quality.maxAnisotropy);
+  return tex;
 }
 
 /**
@@ -133,71 +142,46 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
 }
 
 /**
- * Dado en perspectiva isométrica para las casillas de "tira otra vez":
- * cuerpo claro con los pips oscuros, la cara de arriba más iluminada y el
- * canto sombreado, para que se lea como una pieza y no como un icono plano.
+ * Dado para las casillas de "tira otra vez", en el mismo lenguaje plano que los
+ * iconos de categoría: silueta rotunda, sin perspectiva, con el contorno como
+ * único detalle. Colores invertidos respecto a esos iconos porque la casilla es
+ * clara: cuerpo marfil y pips oscuros, más un contorno oscuro que lo define
+ * sobre el marfil.
  */
 function makeDieIconTexture(): THREE.Texture {
   const size = 256;
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext('2d')!;
-  ctx.clearRect(0, 0, size, size);
 
-  // vértices de la cara superior (rombo isométrico)
-  const top = { x: size * 0.5, y: size * 0.2 };
-  const edgeA = { x: size * 0.32, y: size * 0.185 };
-  const edgeB = { x: -size * 0.32, y: size * 0.185 };
-  const depth = size * 0.185;
-  const add = (p: { x: number; y: number }, q: { x: number; y: number }) => ({ x: p.x + q.x, y: p.y + q.y });
-  const down = (p: { x: number; y: number }) => ({ x: p.x, y: p.y + depth });
+  const margin = size * 0.12;
+  const side = size - margin * 2;
+  const radius = side * 0.22;
 
-  const p1 = add(top, edgeA);
-  const p2 = add(add(top, edgeA), edgeB);
-  const p3 = add(top, edgeB);
-
-  const polygon = (points: { x: number; y: number }[], fill: string | CanvasGradient) => {
+  // contorno: la misma forma, más grande y oscura, para que se lea sobre el marfil
+  const outline = (grow: number, color: string) => {
     ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
-    ctx.closePath();
-    ctx.fillStyle = fill;
+    if (typeof (ctx as unknown as { roundRect?: unknown }).roundRect === 'function') {
+      (ctx as unknown as CanvasRenderingContext2D & { roundRect: (x: number, y: number, w: number, h: number, r: number) => void })
+        .roundRect(margin - grow, margin - grow, side + grow * 2, side + grow * 2, radius + grow);
+    } else {
+      ctx.rect(margin - grow, margin - grow, side + grow * 2, side + grow * 2);
+    }
+    ctx.fillStyle = color;
     ctx.fill();
-    ctx.lineJoin = 'round';
-    ctx.strokeStyle = 'rgba(58,42,22,0.95)';
-    ctx.lineWidth = size * 0.012;
-    ctx.stroke();
   };
 
-  // sombra de contacto
-  ctx.save();
-  ctx.beginPath();
-  ctx.ellipse(size * 0.5, size * 0.76, size * 0.33, size * 0.1, 0, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(30,20,10,0.22)';
-  ctx.filter = 'blur(6px)';
-  ctx.fill();
-  ctx.restore();
+  outline(size * 0.022, 'rgba(52,38,22,0.9)');
+  outline(0, '#f6ebd2');
 
-  // caras laterales
-  polygon([p3, p2, down(p2), down(p3)], '#c0a271');
-  polygon([p1, p2, down(p2), down(p1)], '#a98c5c');
-
-  // cara superior
-  const face = ctx.createLinearGradient(top.x - size * 0.3, top.y, top.x + size * 0.3, p2.y);
-  face.addColorStop(0, '#f6ecd6');
-  face.addColorStop(1, '#e2d2b2');
-  polygon([top, p1, p2, p3], face);
-
-  // pips oscuros sobre la cara superior
+  // pips oscuros
   const pips: [number, number][] = [
-    [0.28, 0.28], [0.72, 0.28], [0.5, 0.5], [0.28, 0.72], [0.72, 0.72],
+    [0.3, 0.3], [0.7, 0.3], [0.5, 0.5], [0.3, 0.7], [0.7, 0.7],
   ];
   for (const [u, v] of pips) {
-    const x = top.x + edgeA.x * u + edgeB.x * v;
-    const y = top.y + edgeA.y * u + edgeB.y * v;
     ctx.beginPath();
-    ctx.ellipse(x, y, size * 0.05, size * 0.05 * 0.72, 0, 0, Math.PI * 2);
-    ctx.fillStyle = '#33261a';
+    ctx.arc(margin + side * u, margin + side * v, side * 0.088, 0, Math.PI * 2);
+    ctx.fillStyle = '#34261a';
     ctx.fill();
   }
 
@@ -408,7 +392,7 @@ export function createBoardView(textures: TableTextures): BoardView {
     } else if (isRollAgain) {
       // dado grabado en las casillas de "tira otra vez"
       const icon = new THREE.Mesh(
-        new THREE.PlaneGeometry(radius * 1.5, radius * 1.5),
+        new THREE.PlaneGeometry(radius * 1.3, radius * 1.3),
         new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false }),
       );
       icon.rotation.x = -Math.PI / 2;
