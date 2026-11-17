@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { CATEGORIES } from './categories';
 import type { CategoryKey } from './categories';
 import {
@@ -19,7 +19,6 @@ import type { TableTextures } from './table';
 import { quality } from './quality';
 import dieWoodUrl from './assets/textures/die_wood.jpg?url';
 import marbleUrl from './assets/textures/marble_grain.jpg?url';
-import diceIconUrl from './assets/icons/dado.svg?url';
 
 export interface BoardView {
   group: THREE.Group;
@@ -130,6 +129,81 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(0.5, 0.5);
   tex.anisotropy = Math.min(8, quality.maxAnisotropy);
+  return tex;
+}
+
+/**
+ * Dado en perspectiva isométrica para las casillas de "tira otra vez":
+ * cuerpo claro con los pips oscuros, la cara de arriba más iluminada y el
+ * canto sombreado, para que se lea como una pieza y no como un icono plano.
+ */
+function makeDieIconTexture(): THREE.Texture {
+  const size = 256;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  ctx.clearRect(0, 0, size, size);
+
+  // vértices de la cara superior (rombo isométrico)
+  const top = { x: size * 0.5, y: size * 0.2 };
+  const edgeA = { x: size * 0.32, y: size * 0.185 };
+  const edgeB = { x: -size * 0.32, y: size * 0.185 };
+  const depth = size * 0.185;
+  const add = (p: { x: number; y: number }, q: { x: number; y: number }) => ({ x: p.x + q.x, y: p.y + q.y });
+  const down = (p: { x: number; y: number }) => ({ x: p.x, y: p.y + depth });
+
+  const p1 = add(top, edgeA);
+  const p2 = add(add(top, edgeA), edgeB);
+  const p3 = add(top, edgeB);
+
+  const polygon = (points: { x: number; y: number }[], fill: string | CanvasGradient) => {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(58,42,22,0.95)';
+    ctx.lineWidth = size * 0.012;
+    ctx.stroke();
+  };
+
+  // sombra de contacto
+  ctx.save();
+  ctx.beginPath();
+  ctx.ellipse(size * 0.5, size * 0.76, size * 0.33, size * 0.1, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(30,20,10,0.22)';
+  ctx.filter = 'blur(6px)';
+  ctx.fill();
+  ctx.restore();
+
+  // caras laterales
+  polygon([p3, p2, down(p2), down(p3)], '#c0a271');
+  polygon([p1, p2, down(p2), down(p1)], '#a98c5c');
+
+  // cara superior
+  const face = ctx.createLinearGradient(top.x - size * 0.3, top.y, top.x + size * 0.3, p2.y);
+  face.addColorStop(0, '#f6ecd6');
+  face.addColorStop(1, '#e2d2b2');
+  polygon([top, p1, p2, p3], face);
+
+  // pips oscuros sobre la cara superior
+  const pips: [number, number][] = [
+    [0.28, 0.28], [0.72, 0.28], [0.5, 0.5], [0.28, 0.72], [0.72, 0.72],
+  ];
+  for (const [u, v] of pips) {
+    const x = top.x + edgeA.x * u + edgeB.x * v;
+    const y = top.y + edgeA.y * u + edgeB.y * v;
+    ctx.beginPath();
+    ctx.ellipse(x, y, size * 0.05, size * 0.05 * 0.72, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#33261a';
+    ctx.fill();
+  }
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = Math.min(4, quality.maxAnisotropy);
   return tex;
 }
 
@@ -334,8 +408,8 @@ export function createBoardView(textures: TableTextures): BoardView {
     } else if (isRollAgain) {
       // dado grabado en las casillas de "tira otra vez"
       const icon = new THREE.Mesh(
-        new THREE.PlaneGeometry(radius * 1.15, radius * 1.15),
-        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.82, depthWrite: false }),
+        new THREE.PlaneGeometry(radius * 1.5, radius * 1.5),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false }),
       );
       icon.rotation.x = -Math.PI / 2;
       icon.position.set(p.x, p.y + 0.012, p.z);
@@ -360,16 +434,11 @@ export function createBoardView(textures: TableTextures): BoardView {
 
   /* ---------- dado grabado en las casillas de "tira otra vez" ---------- */
   if (diceIconPlanes.length > 0) {
-    loadIconTexture(diceIconUrl)
-      .then((tex) => {
-        for (const mesh of diceIconPlanes) {
-          (mesh.material as THREE.MeshBasicMaterial).map = tex;
-          (mesh.material as THREE.MeshBasicMaterial).needsUpdate = true;
-        }
-      })
-      .catch(() => {
-        /* sin icono: la casilla sigue siendo la clara del anillo */
-      });
+    const tex = makeDieIconTexture();
+    for (const mesh of diceIconPlanes) {
+      (mesh.material as THREE.MeshBasicMaterial).map = tex;
+      (mesh.material as THREE.MeshBasicMaterial).needsUpdate = true;
+    }
   }
 
   /* ---------- iconos de categoría sobre las sedes ---------- */
