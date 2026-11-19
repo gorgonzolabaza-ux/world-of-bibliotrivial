@@ -153,16 +153,16 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
 }
 
 /**
- * Tablero: base de madera, seis paneles de color con veta, casillas de mármol,
- * sedes con su icono y las casillas de "tira otra vez" con el dado.
- */
-/**
- * Logotipo del centro: una W grande con la B como subíndice, en el mismo latón
- * que las juntas entre paneles. Se dibuja en canvas para poder colocar el
- * subíndice con precisión; el estilo serif va a juego con la interfaz.
+ * Logotipo del centro: una W grande con la B como subíndice, en cursiva y en el
+ * mismo latón que las juntas entre paneles.
+ *
+ * Se dibuja en canvas para poder colocar el subíndice con precisión. El centrado
+ * es óptico: no se centra la W, sino la mancha de tinta de las dos letras, y al
+ * subíndice se le descuenta peso porque, al ser más pequeño, arrastra menos la
+ * vista. Sin eso, la B a la derecha hace que el conjunto parezca desplazado.
  */
 function makeLogoTexture(): THREE.Texture {
-  const width = 600;
+  const width = 620;
   const height = 420;
   const canvas = document.createElement('canvas');
   canvas.width = width;
@@ -172,19 +172,24 @@ function makeLogoTexture(): THREE.Texture {
   const serif = "Georgia, 'Times New Roman', serif";
   // el material es sin luz, y el tone mapping aclara: se compensa bajando el tono
   const gold = '#bf9a55';
-  const bigFont = `380px ${serif}`;
-  const smallFont = `170px ${serif}`;
+  const bigFont = `italic 380px ${serif}`;
+  const smallFont = `italic 170px ${serif}`;
+  const baseline = 320;
 
   ctx.font = bigFont;
-  const wWidth = ctx.measureText('W').width;
+  const wMetrics = ctx.measureText('W');
   ctx.font = smallFont;
-  const bWidth = ctx.measureText('B').width;
+  const bMetrics = ctx.measureText('B');
 
-  // la W va centrada en el hexágono y la B cuelga a su derecha, así la ficha
-  // del centro no tapa la letra principal de forma asimétrica
-  const overlap = bWidth * 0.1;
-  const startX = (width - wWidth) / 2;
-  const baseline = 320;
+  // mancha real de cada letra (la cursiva se sale del ancho nominal)
+  const wInk = wMetrics.actualBoundingBoxLeft + wMetrics.actualBoundingBoxRight;
+  const bInk = bMetrics.actualBoundingBoxLeft + bMetrics.actualBoundingBoxRight;
+  const overlap = bInk * 0.14;
+
+  // el subíndice pesa menos en la composición: se cuenta al 78 % para centrar
+  const weight = wInk + (bInk - overlap) * 0.78;
+  const inkStart = (width - weight) / 2;
+  const startX = inkStart + wMetrics.actualBoundingBoxLeft;
 
   ctx.textBaseline = 'alphabetic';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
@@ -197,7 +202,7 @@ function makeLogoTexture(): THREE.Texture {
 
   // la B baja por debajo de la línea base: es el subíndice
   ctx.font = smallFont;
-  ctx.fillText('B', startX + wWidth - overlap, baseline + 62);
+  ctx.fillText('B', startX + wMetrics.width - overlap, baseline + 62);
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -347,7 +352,7 @@ export function createBoardView(textures: TableTextures): BoardView {
 
       // logotipo grabado en el centro, bajo la ficha
       const logo = new THREE.Mesh(
-        new THREE.PlaneGeometry(2.5, 1.75),
+        new THREE.PlaneGeometry(2.5, 1.69),
         new THREE.MeshBasicMaterial({
           map: makeLogoTexture(),
           transparent: true,
