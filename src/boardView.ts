@@ -156,6 +156,55 @@ async function loadMarbleTexture(): Promise<THREE.Texture> {
  * Tablero: base de madera, seis paneles de color con veta, casillas de mármol,
  * sedes con su icono y las casillas de "tira otra vez" con el dado.
  */
+/**
+ * Logotipo del centro: una W grande con la B como subíndice, en el mismo latón
+ * que las juntas entre paneles. Se dibuja en canvas para poder colocar el
+ * subíndice con precisión; el estilo serif va a juego con la interfaz.
+ */
+function makeLogoTexture(): THREE.Texture {
+  const width = 600;
+  const height = 420;
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d')!;
+
+  const serif = "Georgia, 'Times New Roman', serif";
+  // el material es sin luz, y el tone mapping aclara: se compensa bajando el tono
+  const gold = '#bf9a55';
+  const bigFont = `380px ${serif}`;
+  const smallFont = `170px ${serif}`;
+
+  ctx.font = bigFont;
+  const wWidth = ctx.measureText('W').width;
+  ctx.font = smallFont;
+  const bWidth = ctx.measureText('B').width;
+
+  // la W va centrada en el hexágono y la B cuelga a su derecha, así la ficha
+  // del centro no tapa la letra principal de forma asimétrica
+  const overlap = bWidth * 0.1;
+  const startX = (width - wWidth) / 2;
+  const baseline = 320;
+
+  ctx.textBaseline = 'alphabetic';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 5;
+  ctx.fillStyle = gold;
+
+  ctx.font = bigFont;
+  ctx.fillText('W', startX, baseline);
+
+  // la B baja por debajo de la línea base: es el subíndice
+  ctx.font = smallFont;
+  ctx.fillText('B', startX + wWidth - overlap, baseline + 62);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = Math.min(8, quality.maxAnisotropy);
+  return tex;
+}
+
 export function createBoardView(textures: TableTextures): BoardView {
   const group = new THREE.Group();
   const tiles: THREE.Mesh[] = [];
@@ -295,6 +344,20 @@ export function createBoardView(textures: TableTextures): BoardView {
       hubRing.rotation.z = Math.PI / 6;
       hubRing.position.y = PLATE_HEIGHT + HUB_HEIGHT - 0.012;
       group.add(hubRing);
+
+      // logotipo grabado en el centro, bajo la ficha
+      const logo = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.5, 1.75),
+        new THREE.MeshBasicMaterial({
+          map: makeLogoTexture(),
+          transparent: true,
+          opacity: 0.95,
+          depthWrite: false,
+        }),
+      );
+      logo.rotation.x = -Math.PI / 2;
+      logo.position.set(0, PLATE_HEIGHT + HUB_HEIGHT + 0.004, 0);
+      group.add(logo);
       continue;
     }
 
