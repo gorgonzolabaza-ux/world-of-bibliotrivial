@@ -9,10 +9,10 @@
  * administrador, así que los exámenes no salen de su equipo.
  */
 
-import { del } from '@vercel/blob';
 import {
   CATEGORY_KEYS,
   VALID_SLUG,
+  deleteJson,
   noteFailure,
   passwordOk,
   readManifest,
@@ -127,7 +127,7 @@ async function remove(req: ApiRequest, res: ApiResponse) {
     return send(res, 404, { error: 'Ese examen no estaba publicado.' });
   }
   await writeManifest(manifest);
-  await del(`questions/${id}.json`).catch(() => {
+  await deleteJson(`questions/${id}.json`).catch(() => {
     /* si el fichero ya no está, el manifest es lo que manda */
   });
   return send(res, 200, { ok: true, id, sources: manifest.sources.length });

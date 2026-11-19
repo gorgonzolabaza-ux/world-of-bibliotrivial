@@ -5,7 +5,7 @@
  */
 
 import { createHash, timingSafeEqual } from 'node:crypto';
-import { get, put } from '@vercel/blob';
+import { del, get, list, put } from '@vercel/blob';
 
 export interface ApiRequest {
   method?: string;
@@ -93,11 +93,26 @@ export interface StoredManifest {
   sources: ManifestSource[];
 }
 
-/** Lee un JSON del almacén. Devuelve null si no existe. */
+/**
+ * Lee un JSON del almacén. Devuelve null si no existe.
+ *
+ * Cada escritura crea un blob con sufijo aleatorio, así que un documento puede
+ * tener varias versiones. Se escoge siempre la más reciente: si se sobrescribe
+ * el mismo nombre, el CDN del almacén sigue sirviendo la versión anterior y se
+ * leería contenido viejo.
+ */
 export async function readJson<T>(pathname: string): Promise<T | null> {
   try {
-    const result = await get(pathname, { access: 'private' });
-    if (!result) return null;
+    const stem = pathname.replace(/\.json$/, '');
+    const listed = await list({ prefix: stem, limit: 200 });
+    const pattern = new RegExp(`^${stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(-[a-z0-9]+)?\\.json$`, 'i');
+    const versions = listed.blobs
+      .filter((blob) => pattern.test(blob.pathname))
+      .sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime());
+    if (versions.length === 0) return null;
+
+    const result = await get(versions[0].url, { access: 'private' });
+    if (!result || !result.stream) return null;
     const text = await new Response(result.stream).text();
     return JSON.parse(text) as T;
   } catch {
@@ -106,14 +121,33 @@ export async function readJson<T>(pathname: string): Promise<T | null> {
 }
 
 export async function writeJson(pathname: string, value: unknown): Promise<void> {
-  await put(pathname, JSON.stringify(value), {
+  const blob = await put(pathname, JSON.stringify(value), {
     access: 'private',
-    addRandomSuffix: false,
+    addRandomSuffix: true,
     allowOverwrite: true,
     contentType: 'application/json; charset=utf-8',
   });
+
+  // se borran las versiones anteriores para que el almacén no crezca sin fin
+  try {
+    const stem = pathname.replace(/\.json$/, '');
+    const listed = await list({ prefix: stem, limit: 200 });
+    const pattern = new RegExp(`^${stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(-[a-z0-9]+)?\\.json$`, 'i');
+    const old = listed.blobs.filter((item) => item.pathname !== blob.pathname && pattern.test(item.pathname));
+    if (old.length > 0) await del(old.map((item) => item.url));
+  } catch {
+    /* si falla la limpieza, el documento nuevo ya está escrito */
+  }
 }
 
+/** Borra todas las versiones de un documento. */
+export async function deleteJson(pathname: string): Promise<void> {
+  const stem = pathname.replace(/\.json$/, '');
+  const pattern = new RegExp(`^${stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(-[a-z0-9]+)?\\.json$`, 'i');
+  const listed = await list({ prefix: stem, limit: 200 });
+  const versions = listed.blobs.filter((blob) => pattern.test(blob.pathname));
+  if (versions.length > 0) await del(versions.map((blob) => blob.url));
+}
 export async function readManifest(): Promise<StoredManifest> {
   return (await readJson<StoredManifest>(MANIFEST_PATH)) ?? { version: 1, sources: [] };
 }
