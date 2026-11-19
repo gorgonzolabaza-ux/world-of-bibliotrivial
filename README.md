@@ -75,6 +75,25 @@ npm run ingest -- --exam content/oposiciones/normal/2024/examen1.pdf \
 Detalle del formato, de la revisión de clasificaciones dudosas y de las opciones en
 [content/README.md](content/README.md).
 
+### Ingesta desde el navegador
+
+En https://opotrivial.vercel.app/ingest.html hay una página para subir un par de
+PDF (examen + plantilla) sin tocar la línea de comandos. Pide contraseña, que se
+valida **en el servidor** contra la variable de entorno INGEST_PASSWORD, y
+publica las tarjetas al instante: no hace falta volver a desplegar.
+
+- El parseo ocurre en el navegador: el PDF no sale del equipo. Al servidor solo
+  llega el JSON ya limpio.
+- Se guarda en un almacén Blob privado del proyecto, y el juego lee de ahí
+  (/api/manifest y /api/questions?id=…) mezclándolo con lo que va en
+  content/. Si el mismo examen está en los dos sitios, gana el publicado.
+- Para retirar un examen: DELETE /api/ingest?id=<examen> con la cabecera
+  x-ingest-password.
+
+El parser es el mismo en las dos vías: src/content/parse-exam.mjs, compartido
+por la página y por scripts/ingest.mjs, para que no puedan dar resultados
+distintos.
+
 ## Build
 
 ```bash

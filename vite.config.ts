@@ -46,5 +46,15 @@ export default defineConfig({
     // los *.tmpdir son ficheros temporales de los editores al guardar
     watch: { ignored: ['**/.tmp/**', '**/dist/**', '**/.*.tmpdir/**', '**/*.tmp'] },
   },
-  build: { target: 'es2022' },
+  build: {
+    target: 'es2022',
+    rollupOptions: {
+      // dos páginas: el juego y la ingesta. El lector de PDF solo se carga en
+      // la de ingesta, así que el juego no paga su peso.
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        ingest: path.resolve(__dirname, 'ingest.html'),
+      },
+    },
+  },
 });

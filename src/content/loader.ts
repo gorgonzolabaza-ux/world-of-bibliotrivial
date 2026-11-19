@@ -18,20 +18,47 @@ export interface Manifest {
 
 const VALID_CATEGORIES = new Set<string>(CATEGORIES.map((c) => c.key));
 
-export async function fetchManifest(): Promise<Manifest | null> {
+/** BASE_URL es './' para que funcione igual en la raíz que en un subpath. */
+const base = () => import.meta.env.BASE_URL;
+
+async function fetchJson<T>(url: string): Promise<T | null> {
   try {
-    // BASE_URL es './' para que funcione igual en la raíz que en un subpath
-    const res = await fetch(`${import.meta.env.BASE_URL}content/manifest.json`, { cache: 'no-store' });
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) return null;
-    return (await res.json()) as Manifest;
+    return (await res.json()) as T;
   } catch {
     return null;
   }
 }
 
 /**
- * Carga las preguntas ya parseadas. El PDF no se toca en el navegador: se
- * convierte a JSON en local con `scripts/ingest.mjs` y aquí solo se lee ese JSON.
+ * Manifiesto del contenido. Se juntan dos fuentes:
+ *   1. lo publicado desde la página de ingesta (`/api/manifest`, almacén Blob),
+ *   2. lo que va en el repositorio (`content/manifest.json`).
+ * Si el mismo examen está en las dos, gana el publicado, que es el más reciente.
+ * Cuando no hay nada publicado —o en desarrollo, sin funciones— queda solo el
+ * manifiesto del repo.
+ */
+export async function fetchManifest(): Promise<Manifest | null> {
+  const [remote, local] = await Promise.all([
+    fetchJson<Manifest>(`${base()}api/manifest`),
+    fetchJson<Manifest>(`${base()}content/manifest.json`),
+  ]);
+
+  const sources: ManifestSource[] = [];
+  const seen = new Set<string>();
+  for (const source of [...(remote?.sources ?? []), ...(local?.sources ?? [])]) {
+    if (!source?.id || seen.has(source.id)) continue;
+    seen.add(source.id);
+    sources.push(source);
+  }
+  if (sources.length === 0) return null;
+  return { version: remote?.version ?? local?.version ?? 1, sources };
+}
+
+/**
+ * Carga las preguntas ya parseadas. El PDF no se toca aquí: se convierte a JSON
+ * en la página de ingesta (o con `scripts/ingest.mjs`) y esto solo lo lee.
  */
 export async function loadQuestionsFromManifest(difficulty: 'normal' | 'hard'): Promise<Question[]> {
   const manifest = await fetchManifest();
@@ -41,7 +68,7 @@ export async function loadQuestionsFromManifest(difficulty: 'normal' | 'hard'): 
   for (const source of manifest.sources) {
     if (source.difficulty !== difficulty) continue;
     try {
-      const res = await fetch(source.exam, { cache: 'no-store' });
+      const res = await fetch(`${base()}${source.exam}`, { cache: 'no-store' });
       if (!res.ok) continue;
       const data = await res.json();
       const items = Array.isArray(data) ? data : data.questions;
