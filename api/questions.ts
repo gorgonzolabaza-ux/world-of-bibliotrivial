@@ -1,7 +1,7 @@
 /** GET /api/questions?id=<examen> — preguntas de un examen publicado desde la ingesta. */
 
-import { VALID_SLUG, readJson, readManifest, send } from './_lib';
-import type { ApiRequest, ApiResponse } from './_lib';
+import { VALID_SLUG, readJson, readManifest, send } from './_lib.js';
+import type { ApiRequest, ApiResponse } from './_lib.js';
 
 export default async function handler(req: ApiRequest, res: ApiResponse) {
   if (req.method !== 'GET') return send(res, 405, { error: 'Método no permitido.' });

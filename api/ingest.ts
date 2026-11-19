@@ -21,8 +21,8 @@ import {
   tooManyAttempts,
   writeJson,
   writeManifest,
-} from './_lib';
-import type { ApiRequest, ApiResponse } from './_lib';
+} from './_lib.js';
+import type { ApiRequest, ApiResponse } from './_lib.js';
 
 const MAX_QUESTIONS = 400;
 const VALID_CATEGORIES = new Set<string>(CATEGORY_KEYS);

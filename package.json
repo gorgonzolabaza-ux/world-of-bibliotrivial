@@ -17,6 +17,7 @@
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "@types/three": "^0.180.0",
     "pdfjs-dist": "^5.4.54",
     "typescript": "^5.9.3",
