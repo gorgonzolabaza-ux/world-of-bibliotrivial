@@ -187,7 +187,7 @@ function makeLogoTexture(): THREE.Texture {
   const overlap = bInk * 0.14;
 
   // el subíndice pesa menos en la composición: se cuenta al 78 % para centrar
-  const weight = wInk + (bInk - overlap) * 0.78;
+  const weight = wInk + (bInk - overlap) * 0.85;
   const inkStart = (width - weight) / 2;
   const startX = inkStart + wMetrics.actualBoundingBoxLeft;
 
@@ -202,7 +202,7 @@ function makeLogoTexture(): THREE.Texture {
 
   // la B baja por debajo de la línea base: es el subíndice
   ctx.font = smallFont;
-  ctx.fillText('B', startX + wMetrics.width - overlap, baseline + 62);
+  ctx.fillText('B', startX + wMetrics.width - overlap, baseline + 54);
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
